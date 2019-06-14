@@ -1,23 +1,33 @@
-var db = require("../models");
-
 module.exports = function(app) {
-  // Load index page
+  // Load Home page
   app.get("/", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.render("index", {
-        msg: "Welcome!",
-        examples: dbExamples
-      });
+    console.log("user: " + req.user);
+    console.log("authenticated: " + req.isAuthenticated());
+    res.render("homepage");
+  });
+
+  app.get("/register", function(req, res) {
+    res.render("register", {
+      title: "Registration"
     });
   });
 
-  // Load example page and pass in an example by id
-  app.get("/example/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.render("example", {
-        example: dbExample
-      });
+  app.get("/login", function(req, res) {
+    res.render("login", {
+      title: "Login"
     });
+  });
+
+  app.get("/logout", function(req, res) {
+    req.logout();
+    req.session.destroy(function() {
+      res.clearCookie("connect.sid");
+      res.redirect("/");
+    });
+  });
+
+  app.get("/profile", authenticationMiddleware(), function(req, res) {
+    res.render("profile");
   });
 
   // Render 404 page for any unmatched routes
@@ -25,3 +35,15 @@ module.exports = function(app) {
     res.render("404");
   });
 };
+
+function authenticationMiddleware() {
+  return (req, res, next) => {
+    console.log(
+      "req.session.passport.user: " + JSON.stringify(req.session.passport)
+    );
+    if (req.isAuthenticated()) {
+      return next();
+    }
+    res.redirect("/login");
+  };
+}
