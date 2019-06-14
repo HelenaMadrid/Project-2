@@ -6,6 +6,95 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
   <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
   <title>Home Page</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  
+  <!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+  <script>
+    $(document).ready(function () {
+      //var Api2Pdf = require('api2pdf');   
+//var a2pClient = new Api2Pdf('591b4741-015b-40c1-a51c-21e77ce15bbb');
+      //var company=["apple", "microsoft", "google"];
+      //  $('input.autocomplete').autocomplete({
+      //  source: company
+      // });
+      //});
+
+      $('input.autocomplete').keyup(function (event) {
+        event.preventDefault();
+        $("#sug").empty();
+        var truefalse = true;
+        console.log("h");
+        var selected = "";
+        var company = $('input.autocomplete').val().trim();
+        console.log(company);
+        $.ajax({
+          type: "GET",
+          url: "https://autocomplete.clearbit.com/v1/companies/suggest?query=" + company,
+          async: true,
+          dataType: "json",
+          success: function (response) {
+            var outArr = [];
+            //console.log(response);
+            //console.log(response[0]);
+            //console.log(response.length);
+            for (var x = 0; x < response.length; x++) {
+              //console.log(response[x].name);
+              var div = $("<div>");
+              div.text(response[x].name);
+              div.attr("data-name", response[x].name);
+              div.addClass("companySug");
+              $("#sug").append(div);
+            }
+            $(".companySug").off();
+            $(".companySug").on("click", function (event) {
+              if (truefalse === true) {
+                event.preventDefault();
+                console.log("hola");
+                selected = $(this).attr("data-name");
+                $('input.autocomplete').text(selected);
+                // var selected = $(this).val();
+                //console.log($(this));
+                console.log("selected " + selected);
+                truefalse = false;
+              }
+              else {
+                console.log("not");
+              }
+            })
+          },
+          error: function (xhr, status, err) {
+            // This time, we do not end up here!
+
+          }
+        });
+      });
+      $("#submit").off();
+      $("#submit").on("click", function (event) {
+        event.preventDefault();
+        console.log("hate");
+        var urlLoc = "https://www.api2pdf.com/#testdrive";
+        var ApiKey = "591b4741-015b-40c1-a51c-21e77ce15bbb";
+        $.ajax({
+          type: "POST",
+         // Authorization: ApiKey,
+          url: "https://v2018.api2pdf.com/wkhtmltopdf/url?url=http%3A%2F%2Flocalhost%3A3000&apikey=591b4741-015b-40c1-a51c-21e77ce15bbb",
+          dataType: "pdf",
+          success: function (response) {
+            console.log(response);
+          },
+          error: function (xhr, status, err) {
+            // This time, we do not end up here!
+            console.log(err);
+
+          }
+        });
+      });
+    })
+
+
+
+  </script>
 </head>
 
 <body>
