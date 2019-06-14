@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="col-lg-6">
+        <h1>{{title}}</h1>
+        <br>
+        <p>If you are already registered. Please enter your credentials.</p>
+        <br>
+        <form class="login-user" method="POST" action="/login">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" class="form-control" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Password">
+            </div>
+            <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>

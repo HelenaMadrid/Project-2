@@ -1,3 +1,13 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+#errors {
+  font-size: 12px;
+  border: 1px solid red;
+  padding: 4px;
+}
+
+.error {
+  color: red;
+}
