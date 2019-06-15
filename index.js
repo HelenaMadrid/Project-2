@@ -1,18 +1,19 @@
-<!DOCTYPE html>
-<html>
+var puppeteer = require('puppeteer');
+var http = require("http");
+async function generatePDF() {
+var browser = await puppeteer.launch();
+  var page = await browser.newPage();
+  await page.goto('https://desolate-mesa-51130.herokuapp.com', {waitUntil: 'networkidle2'});
+  // page.pdf() is currently supported only in headless mode.
+  // @see https://bugs.chromium.org/p/chromium/issues/detail?id=753118
+  await page.pdf({
+    path: 'hn.pdf',
+    format: 'letter'
+  });
 
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
-  <title>Home Page</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="html2pdf.bundle.min.js"></script>
+  await browser.close();
+}
 
-  
-  <!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
-  <script>
     $(document).ready(function () {
       //var Api2Pdf = require('api2pdf');   
       //var a2pClient = new Api2Pdf('591b4741-015b-40c1-a51c-21e77ce15bbb');
@@ -79,13 +80,5 @@
       });
     })
 
-  </script>
-
-</head>
 
 
-<body>
-  {{{body}}}
-</body>
-
-</html>
