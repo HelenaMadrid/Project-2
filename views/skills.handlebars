@@ -1,0 +1,121 @@
+
+<form class="form">
+    <div class="row duplicate">
+        <div class="col-md-12">
+            
+            <!--DROPDOWN -->
+            <div class="col-md-4 form-group">
+                <select name="" id="" class="form-control">
+                <option value="0">Please select</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+                <option value="4">Four</option>
+                </select>
+            </div>
+            <!-- HIDDEN INPUT -->
+            <div class="col-md-4 form-group input">
+              <input type="text" name="input_0" class="form-control">
+              <button type="button" class="btn btn-danger remove">Remove</button>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+            
+            <!--DROPDOWN -->
+            <div class="col-md-4 form-group">
+                <select name="" id="select_1" class="form-control">
+                <option value="0">Please select</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+                <option value="4">Four</option>
+                </select>
+            </div>
+            <!-- HIDDEN INPUT -->
+            <div class="col-md-4 form-group input">
+              <input type="text" name="input_1" class="form-control">
+              <button type="button" class="btn btn-danger remove">Remove</button>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="col-md-6 duplicate-btn">
+    <button type="button" class="btn btn-block btn-primary add">Add Another</button>
+    </div>
+    
+</form>
+
+<script>
+
+    $(document).ready(function(){
+       
+        $('.input').hide();
+        $('.duplicate').hide();
+
+        //onchange of select
+        $('select').on('change', function(){
+  
+        var value = $(this).val();
+        var select = $(this).parent();
+
+          if(value == 1 || value == 2){
+            $(select).siblings('.input').show();
+          } else {
+            $(select).siblings('.input').hide();
+          }
+
+        });
+
+        //click of remove button
+        $('button.remove').on('click', function(){
+          $(this).parent('.input').hide();
+        });
+        
+        var count = 2;
+
+        //duplicate
+        $('button.add').on('click', function(){
+
+            //clone
+            var row = $('.duplicate').clone();
+            $(row).insertBefore('.duplicate-btn');
+            $(row).show();
+            
+            //add new ids
+            $(row).find('select').attr('id', 'select_'+count);
+            $(row).find('input').attr('id', 'input_'+count);
+            
+            //remove duplicate class
+            $(row).removeClass('duplicate');
+            
+            //onchange of select
+            $('select').on('change', function(){
+
+            var value = $(this).val();
+            var select = $(this).parent();
+
+              if(value == 1 || value == 2){
+                $(select).siblings('.input').show();
+              } else {
+                $(select).siblings('.input').hide();
+              }
+
+            });
+            
+            //click of remove button
+            $('button.remove').on('click', function(){
+              $(this).parent('.input').hide();
+            });
+            
+            count++;
+
+        });
+        
+    });
+
+</script>

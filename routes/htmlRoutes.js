@@ -20,8 +20,11 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/Helena", function(req, res) {
+  app.get("/profesionalexperience", function(req, res) {
     res.render("profesionalexperience");
+  });
+  app.get("/skills", function(req,res){
+    res.render("skills");
   });
 
   // Render 404 page for any unmatched routes
