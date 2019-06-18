@@ -1,0 +1,392 @@
+{{!-- 
+<form class="form">
+    <div class="row duplicate">
+        <div class="col-md-12">
+            
+            <!--DROPDOWN -->
+            <div class="col-md-4 form-group">
+                <select name="" id="" class="form-control">
+                <option value="0">Please select</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+                <option value="4">Four</option>
+                </select>
+            </div>
+            <!-- HIDDEN INPUT -->
+            <div class="col-md-4 form-group input">
+              <input type="text" name="input_0" class="form-control">
+              <button type="button" class="btn btn-danger remove">Remove</button>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+            
+            <!--DROPDOWN -->
+            <div class="col-md-4 form-group">
+                <select name="" id="select_1" class="form-control">
+                <option value="0">Please select</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+                <option value="4">Four</option>
+                </select>
+            </div>
+            <!-- HIDDEN INPUT -->
+            <div class="col-md-4 form-group input">
+              <input type="text" name="input_1" class="form-control">
+              <button type="button" class="btn btn-danger remove">Remove</button>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="col-md-6 duplicate-btn">
+    <button type="button" class="btn btn-block btn-primary add">Add Another</button>
+    </div>
+    
+</form>
+
+<script>
+
+    $(document).ready(function(){
+       
+        $('.input').hide();
+        $('.duplicate').hide();
+
+        //onchange of select
+        $('select').on('change', function(){
+  
+        var value = $(this).val();
+        var select = $(this).parent();
+
+          if(value == 1 || value == 2){
+            $(select).siblings('.input').show();
+          } else {
+            $(select).siblings('.input').hide();
+          }
+
+        });
+
+        //click of remove button
+        $('button.remove').on('click', function(){
+          $(this).parent('.input').hide();
+        });
+        
+        var count = 2;
+
+        //duplicate
+        $('button.add').on('click', function(){
+
+            //clone
+            var row = $('.duplicate').clone();
+            $(row).insertBefore('.duplicate-btn');
+            $(row).show();
+            
+            //add new ids
+            $(row).find('select').attr('id', 'select_'+count);
+            $(row).find('input').attr('id', 'input_'+count);
+            
+            //remove duplicate class
+            $(row).removeClass('duplicate');
+            
+            //onchange of select
+            $('select').on('change', function(){
+
+            var value = $(this).val();
+            var select = $(this).parent();
+
+              if(value == 1 || value == 2){
+                $(select).siblings('.input').show();
+              } else {
+                $(select).siblings('.input').hide();
+              }
+
+            });
+            
+            //click of remove button
+            $('button.remove').on('click', function(){
+              $(this).parent('.input').hide();
+            });
+            
+            count++;
+
+        });
+        
+    });
+
+</script>
+
+
+
+___
+
+
+<div class="container html">
+  <form>
+    <div class="jobExperience border border-info p-3 m-4">
+      <h2>Job Experience</h2>
+
+      <div class="duplicate-job border border-success p-3 m-4" style="display: none">
+        <div class="form-row">
+          <div class="form-group col-md-1 col-xl-1">
+            <label for="YearStart">Started</label>
+            <input type="number" min="1950" max="2019" placeholder="2017" id="YearStart" class="form-control">
+          </div>
+          <div class="form-group col-md-1 col-xl-1">
+            <label for="YearEnd">Ended</label>
+            <input type="number" min="1950" max="2019" placeholder="2019" id="YearEnd" class="form-control">
+          </div>
+          <div class="form-group col-md-1 col-xl-10">
+            <label for="company" class="col-xl-12">Company</label>
+            <input type="text" id="company" class="autocomplete form-control col-xl-12 company" autocomplete="off">
+            <div class="companySug" id="sug"></div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6 col-xl-3">
+            <label for="inputCity">City</label>
+            <input type="text" class="form-control" id="inputCity" placeholder="Monterrey">
+          </div>
+          <div class="form-group col-md-4 col-xl-3">
+            <label for="inputState">State</label>
+            <input type="text" class="form-control" id="inputState" placeholder="Nuevo León">
+          </div>
+          <div class="form-group col-md-4 col-xl-6">
+            <label for="companyRole" class="col-xl-12">Role or Position</label>
+            <input type="text" placeholder="Sales representative" class="form-control col-xl-12" id="companyRole">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6 col-xl-12 tasks">
+            <label class="col-xl-12" for="task">Tasks Performed</label>
+            <input type="text" class="form-control col-xl-10" id="task"
+              placeholder="Implemented marketing plan that increased sales by 30% and created loyalty among new and existing customers.">
+          </div>
+          <button type="submit" id="addTask" class="col-xl-1 btn btn-primary">add</button>
+        </div>
+      </div>
+      <div id="experience" class="border border-success p-3 m-4">
+        <div class="form-row">
+          <div class="form-group col-md-1 col-xl-1">
+            <label for="YearStart_1">Started</label>
+            <input type="number" min="1950" max="2019" placeholder="2017" id="YearStart_1" class="form-control">
+          </div>
+          <div class="form-group col-md-1 col-xl-1">
+            <label for="YearEnd_1">Ended</label>
+            <input type="number" min="1950" max="2019" placeholder="2019" id="YearEnd_1" class="form-control">
+          </div>
+          <div class="form-group col-md-1 col-xl-10">
+            <label for="company_1" class="col-xl-12">Company</label>
+            <input type="text" id="company_1" class="autocomplete form-control col-xl-12 company" autocomplete="off">
+            <div class="companySug" id="sug"></div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6 col-xl-3">
+            <label for="inputCity_1">City</label>
+            <input type="text" class="form-control" id="inputCity_1">
+          </div>
+          <div class="form-group col-md-4 col-xl-3">
+            <label for="inputState_1">State</label>
+            <input type="text" class="form-control" id="inputState_1">
+          </div>
+          <div class="form-group col-md-4 col-xl-6">
+            <label for="companyRole_1" class="col-xl-12">Role or Position</label>
+            <input type="text" placeholder="Sales representative" class="form-control col-xl-12" id="companyRole_1">
+            <div class="companySug" id="sug"></div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6 col-xl-12 tasks">
+            <label class="col-xl-12" for="task_1">Tasks Performed</label>
+            <input type="text" class="form-control col-xl-10" id="task_1"
+              placeholder="Implemented marketing plan that increased sales by 30% and created loyalty among new and existing customers.">
+          </div>
+          <button type="submit" id="addTask" class="col-xl-1 btn btn-primary">add</button>
+        </div>
+      </div>
+      <!--<div class="append"></div>-->
+      <button type="submit" class="btn btn-primary" id="addJob">ADD JOB EXPERIENCE</button>
+    </div>
+
+    <div class="skillsLanguage border border-danger p-3 m-4">
+      <h2>Skills</h2>
+
+      <div class="duplicate-skills border border-success p-3 m-4" style="display: none">
+        <div class="form-row">
+          <div class="col-md-4 col-xl-6 form-group">
+            <label for="skill" class="col-xl-12">Skills</label>
+            <input type="text" placeholder="Javascript" id="skill" class="col-xl-12">
+          </div>
+          <div class="col-md-4 col-xl-6 form-group">
+            <label for="level-skill" class="col-xl-12">Mastery of Skill</label>
+            <select name="" id="" class="form-control" class="col-xl-12">
+              <option value="0">Please select</option>
+              <option value="1">Beginner</option>
+              <option value="2">Intermediate</option>
+              <option value="3">Advanced</option>
+              <option value="4">Expert</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="skills border border-info p-3 m-4">
+        <div class="form-row">
+          <div class="col-md-4 col-xl-6 form-group">
+            <label for="skill" class="col-xl-12">Skills</label>
+            <input type="text" placeholder="Javascript" id="skill" class="col-xl-12">
+          </div>
+          <div class="col-md-4 col-xl-6 form-group">
+            <label for="level-skill" class="col-xl-12">Mastery of Skill</label>
+            <select name="" id="" class="form-control" class="col-xl-12">
+              <option value="0">Please select</option>
+              <option value="1">Beginner</option>
+              <option value="2">Intermediate</option>
+              <option value="3">Advanced</option>
+              <option value="4">Expert</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" id="addSkill">ADD Skill</button>
+    </div>
+
+
+    <button type="submit" id="submit-jobexperience" class="btn btn-success">Next</button>
+  </form>
+
+</div>
+
+<script>
+  $(document).ready(function () {
+    //var Api2Pdf = require('api2pdf');   
+    //var a2pClient = new Api2Pdf('591b4741-015b-40c1-a51c-21e77ce15bbb');
+    //var company=["apple", "microsoft", "google"];
+    //  $('input.autocomplete').autocomplete({
+    //  source: company
+    // });
+    //});
+    var count = 2;
+    var origin = location.origin;
+
+    $('.company').keyup(function (event) {
+      event.preventDefault();
+      $("#sug").empty();
+      var truefalse = true;
+      console.log("h");
+      var selected = "";
+      var company = $(".company").val().trim();
+      console.log(company);
+      $.ajax({
+        type: "GET",
+        url: "https://autocomplete.clearbit.com/v1/companies/suggest?query=" + company,
+        async: true,
+        dataType: "json",
+        success: function (response) {
+          var outArr = [];
+          console.log(response);
+          //console.log(response[0]);
+          //console.log(response.length);
+          for (var x = 0; x < response.length; x++) {
+            //console.log(response[x].name);
+            var div = $("<div>");
+            $("#sug").append(div);
+            div.text(response[x].name);
+            div.attr("data-name", response[x].name);
+            div.addClass("companySug");
+
+          }
+          $(".companySug").off();
+          $(".companySug").on("click", function (event) {
+            if (truefalse === true) {
+              event.preventDefault();
+              console.log("hola");
+              selected = $(this).attr("data-name");
+              $('.company').text(selected);
+              // var selected = $(this).val();
+              //console.log($(this));
+              console.log("selected " + selected);
+              truefalse = false;
+            }
+            else {
+              console.log("not");
+            }
+          })
+        },
+        error: function (xhr, status, err) {
+          // This time, we do not end up here!
+
+        }
+      });
+    });
+    $("#submit").off();
+    $("#submit").on("click", function generatePDF(event) {
+      event.preventDefault();
+      var print = $(".html");
+      html2pdf().from(print).save();
+    });
+
+   
+    $("#addJob").on("click", function (event) {
+      event.preventDefault();
+      //$("#experience").clone(true).appendTo(".append").find("input").val("");
+      console.log("1");
+      //var lastId=$('div[id^="klon"]:last');
+      var jobClone = $(".duplicate-job").clone(true);
+      console.log("2");
+      jobClone.insertBefore("#addJob");
+      console.log("3");
+      jobClone.show();
+      jobClone.attr("id", "Job_" + count);
+      jobClone.find("#YearStart").attr("id", "YearStart_" + count);
+      jobClone.find("#YearEnd").attr("id", "YearEnd_" + count);
+      jobClone.find("#company").attr("id", "company_" + count);
+      jobClone.find("#inputCity").attr("id", "InputCity_" + count);
+      jobClone.find("#inputState").attr("id", "inputState_" + count);
+      jobClone.find("#companyRole").attr("id", "companyRole_" + count);
+      jobClone.find("#task").attr("id", "task_" + count);
+
+      jobClone.removeClass('duplicate-job');
+      count++;
+    })
+
+    $("#addTask").on("click", function (event) {
+      event.preventDefault();
+      $("#task").clone(true).appendTo(".tasks").find("input").val("");
+    })
+
+    $("#submit-jobexperience").on("click", function (event) {
+      event.preventDefault();
+      console.log("next");
+      //extraer todos los datos como objeto, tomando el id del usuario y ligándolo a una tabla
+      var userId;
+      console.log(origin);
+      //location.assign(origin+"/skills");
+      //var job={
+      //  company: company,
+      // yearStart: yearStart,
+      //yearEnd: yearEnd,
+      //role: role,
+      //tasks: task[], //hacer que sea un array antes
+      //}
+
+
+      //$.ajax("/api/jobexperience", function(){
+      //type: "POST",
+      //data: job,
+      // });
+    });
+
+  })
+
+</script> --}}

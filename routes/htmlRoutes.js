@@ -19,7 +19,14 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/logout", function (req, res) {
+  app.get("/profesionalexperience",  authenticationMiddleware(), function(req, res) {
+    res.render("profesionalexperience");
+  });
+  app.get("/skills", authenticationMiddleware(), function(req,res){
+    res.render("skills");
+  });
+
+  app.get("/logout", function(req, res) {
     req.logout();
     req.session.destroy(function () {
       res.clearCookie("connect.sid");
