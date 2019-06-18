@@ -20,10 +20,10 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/profesionalexperience", function(req, res) {
+  app.get("/profesionalexperience",  authenticationMiddleware(), function(req, res) {
     res.render("profesionalexperience");
   });
-  app.get("/skills", function(req,res){
+  app.get("/skills", authenticationMiddleware(), function(req,res){
     res.render("skills");
   });
 
