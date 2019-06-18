@@ -41,5 +41,27 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   );
+
+  User.associate = function(models) {
+    // We're saying that a Post should belong to an Author
+    // A Post can't be created without an Author due to the foreign key constraint
+    User.hasMany(models.Experience, {
+      foreignKey: "UserId"
+    });
+    User.hasMany(models.Studies, {
+      foreignKey: "UserId"
+    });
+    User.hasMany(models.Skills, {
+      foreignKey: "UserId"
+    });
+    User.hasMany(models.GeneralInfo, {
+      foreignKey: "UserId"
+    });
+  };
+  // User.hasMany(models.Experience); 
+  // User.hasMany(models.Studies); 
+  // User.hasMany(models.Skills); 
+  // User.hasMany(models.GeneralInfo); 
+
   return User;
 };
