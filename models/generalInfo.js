@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var GeneralInfo = sequelize.define(
     "GeneralInfo",
     {
@@ -37,6 +37,15 @@ module.exports = function(sequelize, DataTypes) {
         validate: {
           len: [1, 140]
         }
+      },
+
+      profilePic: {
+        type: DataTypes.STRING,
+        allowNull: false,
+
+        validate: {
+          len: [1, 140]
+        }
       }
     },
     {
@@ -44,7 +53,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   );
 
-  GeneralInfo.associate = function(models) {
+  GeneralInfo.associate = function (models) {
     // We're saying that a Post should belong to an Author
     // A Post can't be created without an Author due to the foreign key constraint
     GeneralInfo.belongsTo(models.User, {

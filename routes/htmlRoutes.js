@@ -1,40 +1,119 @@
-module.exports = function(app) {
+var db = require("../models");
+module.exports = function (app) {
   // Load Home page
-  app.get("/", function(req, res) {
+  app.get("/", function (req, res) {
     console.log("user: " + req.user);
     console.log("authenticated: " + req.isAuthenticated());
     res.render("homepage");
   });
 
-  app.get("/register", function(req, res) {
+  app.get("/register", function (req, res) {
     res.render("register", {
       title: "Registration"
     });
   });
 
-  app.get("/login", function(req, res) {
+  app.get("/login", function (req, res) {
     res.render("login", {
       title: "Login"
     });
   });
 
-  app.get("/logout", function(req, res) {
+  app.get("/logout", function (req, res) {
     req.logout();
-    req.session.destroy(function() {
+    req.session.destroy(function () {
       res.clearCookie("connect.sid");
       res.redirect("/");
     });
   });
 
-  app.get("/profile", authenticationMiddleware(), function(req, res) {
-    res.render("profile");
+  app.get("/profile", authenticationMiddleware(), function (req, res) {
+    db.User.findAll({
+      where: {
+        id: req.session.passport.user
+      },
+      include: [{ all: true }]
+    }).then(function (results) {
+      // console.log(results[0].dataValues);
+      // eslint-disable-next-line camelcase
+      res.render("profile", { data: results[0] });
+    });
   });
 
+  app.post("/general", authenticationMiddleware(), function (req, res) {
+    db.GeneralInfo.create({ ...req.body, UserId: req.session.passport.user }).then(function () {
+      res.redirect("/profile");
+    });
+  });
+
+  app.post("/experience", authenticationMiddleware(), function (req, res) {
+    db.Experience.create({ ...req.body, UserId: req.session.passport.user }).then(function () {
+      res.redirect("/profile");
+    });
+  });
+
+  app.post("/skills", authenticationMiddleware(), function (req, res) {
+    db.Skills.create({ ...req.body, UserId: req.session.passport.user }).then(function () {
+      res.redirect("/profile");
+    });
+  });
+
+  app.post("/studies", authenticationMiddleware(), function (req, res) {
+    db.Studies.create({ ...req.body, UserId: req.session.passport.user }).then(function () {
+      res.redirect("/profile");
+    });
+  });
+
+  app.post("/deletegeneral/:id", function (req, res) {
+    // We just have to specify which todo we want to destroy with "where"
+    db.GeneralInfo.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (dbTodo) {
+      res.redirect("/profile");
+    });
+  });
+
+  
+  app.post("/deleteexp/:id", function (req, res) {
+    // We just have to specify which todo we want to destroy with "where"
+    db.Experience.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (dbTodo) {
+      res.redirect("/profile");
+    });
+  });
+
+  
+  app.post("/deletestudies/:id", function (req, res) {
+    // We just have to specify which todo we want to destroy with "where"
+    db.Studies.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (dbTodo) {
+      res.redirect("/profile");
+    });
+  });
   // Render 404 page for any unmatched routes
-  app.get("*", function(req, res) {
+  app.get("*", function (req, res) {
     res.render("404");
   });
 
+  
+  app.post("/deleteskills/:id", function (req, res) {
+    // We just have to specify which todo we want to destroy with "where"
+    db.Skills.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (dbTodo) {
+      res.redirect("/profile");
+    });
+  });
 
 };
 

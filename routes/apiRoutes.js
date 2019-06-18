@@ -70,7 +70,7 @@ module.exports = function(app) {
     }
   });
 
-  app.get("/profile/test", authenticationMiddleware(), function(req, res) {
+  app.get("/api/profile", authenticationMiddleware(), function(req, res) {
     db.User.findAll({
       where: {
         id: req.session.passport.user
