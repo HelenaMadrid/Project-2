@@ -1,6 +1,286 @@
 <div class="container">
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-        <h1 class="display-4">My Profile.</h1>
+        <div class="text-center">
+            <img src="{{data.GeneralInfos.0.profilePic}}"
+                style="object-fit: cover; width:200px; height:200px; border-radius: 50%; border-width: 3px; border-style: solid; border-color: green;"
+                alt="...">
+        </div>
+        <h1 class="display-4">{{data.username}}</h1>
         <p class="lead">My details.</p>
-    </div>  
+    </div>
+    <div class="row my-4">
+        <div class="col-12 col-md-12 col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>
+                        <strong>General Information</strong>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse"
+                            data-target="#collapseFormGeneral" aria-expanded="false"
+                            aria-controls="collapseFormGeneral">
+                            Add New
+                        </button>
+                    </h4>
+                </div>
+                <div class="collapse" id="collapseFormGeneral">
+                    <div class="card-body">
+                        <form action="/general" method="POST">
+                            <div class="form-row">
+                                <div class="form-group col-md-8">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="description">Description</label>
+                                    <input type="text" class="form-control" name="description" id="description"
+                                        placeholder="Description">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="address">Address</label>
+                                    <input type="text" class="form-control" name="address" id="address"
+                                        placeholder="Address">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="phone">Phone</label>
+                                    <input type="text" class="form-control" name="phone" id="phone"
+                                        placeholder="Phone Number">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="address">Profile Pic URL</label>
+                                    <input type="text" class="form-control" name="profilePic" id="profilePic"
+                                        placeholder="profilePic">
+                                </div>
+                            </div>
+                            <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <hr>
+                    {{#each data.GeneralInfos}}
+                    <div id="stats">
+                        <h6><strong>Name: </strong>{{name}}</span></h6>
+                        <h6><strong>Description: </strong>{{description}}</span></h6>
+                        <h6><strong>Address: </strong>{{address}}</span></h6>
+                        <h6><strong>Phone: </strong>{{phone}}</span></h6>
+                        <form action="/deletegeneral/{{id}}" method="POST">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                    <hr>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row my-4">
+        <div class="col-12 col-md-12 col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>
+                        <strong>Experience</strong>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse"
+                            data-target="#collapseFormExp" aria-expanded="false" aria-controls="collapseFormExp">
+                            Add New
+                        </button>
+                    </h4>
+                </div>
+                <div class="collapse" id="collapseFormExp">
+                    <div class="card-body">
+                        <form action="/experience" method="POST">
+                            <div class="form-row">
+                                <div class="form-group col-md-8">
+                                    <label for="jobTitle">Job Title</label>
+                                    <input type="text" class="form-control" name="jobTitle" id="jobTitle"
+                                        placeholder="Job Title">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="company">Company</label>
+                                    <input type="text" class="form-control" name="company" id="company"
+                                        placeholder="Company">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="entryDate">Entry Date</label>
+                                    <input type="date" data-provide="datepicker" class="form-control" name="entryDate"
+                                        id="entryDate" placeholder="">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="leaveDate">Leave Date</label>
+                                    <input type="date" data-provide="datepicker" class="form-control" name="leaveDate"
+                                        id="leaveDate" placeholder="">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="Place">Place</label>
+                                    <input type="text" class="form-control" name="place" id="place" placeholder="Place">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="description">Description</label>
+                                    <input type="text" class="form-control" name="description" id="description"
+                                        placeholder="Description">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="tasks">Tasks</label>
+                                    <input type="text" class="form-control" name="tasks" id="tasks"
+                                        placeholder="Tasks performed on the job">
+                                </div>
+                            </div>
+                            <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <hr>
+                    {{#each data.Experiences}}
+                    <div id="stats">
+                        <h6><strong>Job Title: </strong>{{jobTitle}}</h6>
+                        <h6><strong>Company: </strong>{{company}}</h6>
+                        <h6><strong>Entry Date: </strong>{{entryDate}}</h6>
+                        <h6><strong>Leave Date: </strong>{{leaveDate}}</h6>
+                        <h6><strong>Place: </strong>{{place}}</h6>
+                        <h6><strong>Description: </strong>{{description}}</h6>
+                        <h6><strong>Tasks: </strong>{{tasks}}</h6>
+                        <form action="/deleteexp/{{id}}" method="POST">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                    <hr>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row my-4">
+        <div class="col-12 col-md-12 col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>
+                        <strong>Skills</strong>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse"
+                            data-target="#collapseFormSkills" aria-expanded="false" aria-controls="collapseFormSkills">
+                            Add New
+                        </button>
+                    </h4>
+                </div>
+                <div class="collapse" id="collapseFormSkills">
+                    <div class="card-body">
+                        <form action="/skills" method="POST">
+                            <div class="form-row">
+                                <div class="form-group col-md-8">
+                                    <label for="name">Skill Name</label>
+                                    <input type="text" class="form-control" name="skillName" id="skillName"
+                                        placeholder="Name of the Skill">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="phone">Level</label>
+                                    <input type="number" class="form-control" name="level" id="level " min="1" max="5"
+                                        placeholder="1 = Apprentice to 5 = Master">
+                                </div>
+                            </div>
+                            <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <hr>
+                    {{#each data.Skills}}
+                    <div id="stats">
+                        <h6><strong>Skill Name: </strong>{{skillName}}</h6>
+                        <h6><strong>Level: </strong>{{level}}</h6>
+                        <form action="/deleteskills/{{id}}" method="POST">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                    <hr>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-4">
+        <div class="col-12 col-md-12 col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>
+                        <strong>Studies</strong>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse"
+                            data-target="#collapseFormStudies" aria-expanded="false"
+                            aria-controls="collapseFormStudies">
+                            Add New
+                        </button>
+                    </h4>
+                </div>
+                <div class="collapse" id="collapseFormStudies">
+                    <div class="card-body">
+                        <form action="/studies" method="POST">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="title">Title</label>
+                                    <input type="text" class="form-control" name="title" id="title"
+                                        placeholder="Degree">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="place">Grade</label>
+                                    <input type="text" class="form-control" name="grade" id="grade "
+                                        placeholder="no se porquye es iguial">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="title">School</label>
+                                    <input type="text" class="form-control" name="place" id="place"
+                                        placeholder="School">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="entryDate">Entry Date</label>
+                                    <input type="date" data-provide="datepicker" class="form-control" name="entryDate"
+                                        id="entryDate" placeholder="">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="leaveDate">Leave Date</label>
+                                    <input type="date" data-provide="datepicker" class="form-control" name="leaveDate"
+                                        id="leaveDate" placeholder="">
+                                </div>
+                            </div>
+                            <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <hr>
+                    {{#each data.Studies}}
+                    <div id="stats">
+                        <h6><strong>Title: </strong>{{title}}</h6>
+                        <h6><strong>Grade: </strong>{{grade}}</h6>
+                        <h6><strong>Place: </strong>{{place}}</h6>
+                        <h6><strong>Entry Date: </strong>{{entryDate}}</h6>
+                        <h6><strong>Finish Date: </strong>{{leaveDate}}</h6>
+                        <form action="/deletestudies/{{id}}" method="POST">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                    <hr>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
