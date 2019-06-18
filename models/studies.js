@@ -1,60 +1,64 @@
 module.exports = function(sequelize, DataTypes) {
-  var studies = sequelize.define("Skills", {
-    entryDate: {
-      type: DataTypes.STRING,
-      allowNull: false,
+  var Studies = sequelize.define(
+    "Studies",
+    {
+      entryDate: {
+        type: DataTypes.STRING,
+        allowNull: false,
 
-      validate: {
-        isDate: true
+        validate: {
+          isDate: true
+        }
+      },
+
+      leaveDate: {
+        type: DataTypes.STRING,
+        allowNull: false,
+
+        validate: {
+          isDate: true
+        }
+      },
+
+      grade: {
+        type: DataTypes.STRING,
+        allowNull: false,
+
+        validate: {
+          len: [1, 140]
+        }
+      },
+
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+
+        validate: {
+          len: [1, 140]
+        }
+      },
+
+      place: {
+        type: DataTypes.STRING,
+        allowNull: false,
+
+        validate: {
+          len: [1, 140]
+        }
       }
     },
-
-    leaveDate: {
-      type: DataTypes.STRING,
-      allowNull: false,
-
-      validate: {
-        isDate: true
-      }
-    },
-
-    grade: {
-      type: DataTypes.STRING,
-      allowNull: false,
-
-      validate: {
-        len: [1, 140]
-      }
-    },
-
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false,
-
-      validate: {
-        len: [1, 140]
-      }
-    },
-
-    place: {
-      type: DataTypes.STRING,
-      allowNull: false,
-
-      validate: {
-        len: [1, 140]
-      }
+    {
+      timestamps: false
     }
-  });
+  );
 
-  studies.associate = function(models) {
+  Studies.associate = function(models) {
     // We're saying that a Post should belong to an Author
     // A Post can't be created without an Author due to the foreign key constraint
-    studies.belongsTo(models.uUser, {
-      foreignKey: {
-        allowNull: false
-      }
+    Studies.belongsTo(models.User, {
+      foreignKey: "id"
     });
   };
 
-  return studies;
+  return Studies;
 };

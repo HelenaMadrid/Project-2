@@ -69,7 +69,31 @@ module.exports = function(app) {
       });
     }
   });
+
+  app.get("/profile/test", authenticationMiddleware(), function(req, res) {
+    db.User.findAll({
+      where: {
+        id: req.session.passport.user
+      },
+      include: [{ all: true }]
+    }).then(function(dbAuthor) {
+      res.json(dbAuthor);
+    });
+  });
 };
+
+function authenticationMiddleware() {
+  return (req, res, next) => {
+    console.log(
+      "req.session.passport.user: " + JSON.stringify(req.session.passport)
+    );
+    if (req.isAuthenticated()) {
+      return next();
+    }
+    res.redirect("/login");
+  };
+}
+
 passport.serializeUser(function(userId, done) {
   done(null, userId);
 });
