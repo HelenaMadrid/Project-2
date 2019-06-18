@@ -18,13 +18,13 @@ module.exports = function(app) {
     });
   });
 
-<<<<<<< HEAD
   app.get("/profesionalexperience",  authenticationMiddleware(), function(req, res) {
     res.render("profesionalexperience");
   });
   app.get("/skills", authenticationMiddleware(), function(req,res){
     res.render("skills");
-=======
+  });
+
   app.get("/logout", function(req, res) {
     req.logout();
     req.session.destroy(function() {
@@ -35,7 +35,6 @@ module.exports = function(app) {
 
   app.get("/profile", authenticationMiddleware(), function(req, res) {
     res.render("profile");
->>>>>>> master
   });
 
   // Render 404 page for any unmatched routes

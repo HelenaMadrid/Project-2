@@ -1,90 +1,180 @@
 <div class="container html">
   <form>
-    <div  class="duplicate border border-success p-3 m-4" style="display: none">
-      <div class="form-row">
-        <div class="form-group col-md-1 col-xl-1">
-          <label for="YearStart">Started</label>
-          <input type="number" min="1950" max="2019" placeholder="2017" id="YearStart" class="form-control">
-        </div>
-        <div class="form-group col-md-1 col-xl-1">
-          <label for="YearEnd">Ended</label>
-          <input type="number" min="1950" max="2019" placeholder="2019" id="YearEnd" class="form-control">
-        </div>
-        <div class="form-group col-md-1 col-xl-10">
-          <label for="company" class="col-xl-12">Company</label>
-          <input type="text" id="company" class="autocomplete form-control col-xl-12 company" autocomplete="off">
-          <div class="companySug" id="sug"></div>
-        </div>
-      </div>
+    <div class="jobExperience border border-info p-3 m-4">
+      <h2>Job Experience</h2>
 
-      <div class="form-row">
-        <div class="form-group col-md-6 col-xl-3">
-          <label for="inputCity">City</label>
-          <input type="text" class="form-control" id="inputCity" placeholder="Monterrey">
+      <div class="duplicate-job border border-success p-3 m-4" style="display: none">
+        <div class="form-row">
+          <div class="form-group col-md-1 col-xl-1">
+            <label for="YearStart">Started</label>
+            <input type="number" min="1950" max="2019" placeholder="2017" id="YearStart" class="form-control">
+          </div>
+          <div class="form-group col-md-1 col-xl-1">
+            <label for="YearEnd">Ended</label>
+            <input type="number" min="1950" max="2019" placeholder="2019" id="YearEnd" class="form-control">
+          </div>
+          <div class="form-group col-md-1 col-xl-10">
+            <label for="company" class="col-xl-12">Company</label>
+            <input type="text" id="company" class="autocomplete form-control col-xl-12 company" autocomplete="off">
+            <div class="companySug" id="sug"></div>
+          </div>
         </div>
-        <div class="form-group col-md-4 col-xl-3">
-          <label for="inputState">State</label>
-          <input type="text" class="form-control" id="inputState" placeholder="Nuevo León">
-        </div>
-        <div class="form-group col-md-4 col-xl-6">
-          <label for="companyRole" class="col-xl-12">Role or Position</label>
-          <input type="text" placeholder="Sales representative" class="form-control col-xl-12" id="companyRole">
-        </div>
-      </div>
 
-      <div class="form-row">
-        <div class="form-group col-md-6 col-xl-12 tasks">
-          <label class="col-xl-12" for="task">Tasks Performed</label>
-          <input type="text" class="form-control col-xl-10" id="task"
-            placeholder="Implemented marketing plan that increased sales by 30% and created loyalty among new and existing customers.">
+        <div class="form-row">
+          <div class="form-group col-md-6 col-xl-3">
+            <label for="inputCity">City</label>
+            <input type="text" class="form-control" id="inputCity" placeholder="Monterrey">
+          </div>
+          <div class="form-group col-md-4 col-xl-3">
+            <label for="inputState">State</label>
+            <input type="text" class="form-control" id="inputState" placeholder="Nuevo León">
+          </div>
+          <div class="form-group col-md-4 col-xl-6">
+            <label for="companyRole" class="col-xl-12">Role or Position</label>
+            <input type="text" placeholder="Sales representative" class="form-control col-xl-12" id="companyRole">
+          </div>
         </div>
-        <button type="submit" id="addTask" class="col-xl-1 btn btn-primary">add</button>
+
+        <div class="form-row">
+          <div class="form-group col-md-6 col-xl-12 tasks">
+            <label class="col-xl-12" for="task">Tasks Performed</label>
+            <input type="text" class="form-control col-xl-10" id="task"
+              placeholder="Implemented marketing plan that increased sales by 30% and created loyalty among new and existing customers.">
+          </div>
+          <button type="submit" class="col-xl-1 btn btn-primary addTask">add</button>
+        </div>
       </div>
+      <div id="Job_1" class="border border-success p-3 m-4">
+        <div class="form-row">
+          <div class="form-group col-md-1 col-xl-1">
+            <label for="YearStart_1">Started</label>
+            <input type="number" min="1950" max="2019" placeholder="2017" id="YearStart_1" class="form-control">
+          </div>
+          <div class="form-group col-md-1 col-xl-1">
+            <label for="YearEnd_1">Ended</label>
+            <input type="number" min="1950" max="2019" placeholder="2019" id="YearEnd_1" class="form-control">
+          </div>
+          <div class="form-group col-md-1 col-xl-10">
+            <label for="company_1" class="col-xl-12">Company</label>
+            <input type="text" id="company_1" class="autocomplete form-control col-xl-12 company" autocomplete="off">
+            <div class="companySug" id="sug"></div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6 col-xl-3">
+            <label for="inputCity_1">City</label>
+            <input type="text" class="form-control" id="inputCity_1">
+          </div>
+          <div class="form-group col-md-4 col-xl-3">
+            <label for="inputState_1">State</label>
+            <input type="text" class="form-control" id="inputState_1">
+          </div>
+          <div class="form-group col-md-4 col-xl-6">
+            <label for="companyRole_1" class="col-xl-12">Role or Position</label>
+            <input type="text" placeholder="Sales representative" class="form-control col-xl-12" id="companyRole_1">
+            <div class="companySug" id="sug"></div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6 col-xl-12 tasks">
+            <label class="col-xl-12" for="task_1">Tasks Performed</label>
+            <input type="text" class="form-control col-xl-10" id="task_1"
+              placeholder="Implemented marketing plan that increased sales by 30% and created loyalty among new and existing customers.">
+          </div>
+          <button type="submit" class="col-xl-1 btn btn-primary addTask">add</button>
+        </div>
+      </div>
+      <!--<div class="append"></div>-->
+      <button type="submit" class="btn btn-primary" id="addJob">ADD JOB EXPERIENCE</button>
     </div>
-    <div id="experience" class="border border-success p-3 m-4">
-      <div class="form-row">
-        <div class="form-group col-md-1 col-xl-1">
-          <label for="YearStart_1">Started</label>
-          <input type="number" min="1950" max="2019" placeholder="2017" id="YearStart_1" class="form-control">
-        </div>
-        <div class="form-group col-md-1 col-xl-1">
-          <label for="YearEnd_1">Ended</label>
-          <input type="number" min="1950" max="2019" placeholder="2019" id="YearEnd_1" class="form-control">
-        </div>
-        <div class="form-group col-md-1 col-xl-10">
-          <label for="company_1" class="col-xl-12">Company</label>
-          <input type="text" id="company_1" class="autocomplete form-control col-xl-12 company" autocomplete="off">
-          <div class="companySug" id="sug"></div>
-        </div>
-      </div>
 
-      <div class="form-row">
-        <div class="form-group col-md-6 col-xl-3">
-          <label for="inputCity_1">City</label>
-          <input type="text" class="form-control" id="inputCity_1">
+    <div class="skills border border-danger p-3 m-4">
+      <h2>Skills</h2>
+      <div class="duplicate-skill border border-success p-3 m-4" style="display: none">
+        <div class="form-row">
+          <div class="col-md-4 col-xl-6 form-group">
+            <label for="skill" class="col-xl-12">Skills</label>
+            <input type="text" placeholder="Javascript" id="skill" class="col-xl-12">
+          </div>
+          <div class="col-md-4 col-xl-6 form-group">
+            <label for="level-skill" class="col-xl-12">Mastery of Skill</label>
+            <select name="" id="level-skill" class="form-control" class="col-xl-12">
+              <option value="0">Please select</option>
+              <option value="1">Beginner</option>
+              <option value="2">Intermediate</option>
+              <option value="3">Advanced</option>
+              <option value="4">Expert</option>
+            </select>
+          </div>
         </div>
-        <div class="form-group col-md-4 col-xl-3">
-          <label for="inputState_1">State</label>
-          <input type="text" class="form-control" id="inputState_1">
-        </div>
-        <div class="form-group col-md-4 col-xl-6">
-          <label for="companyRole_1" class="col-xl-12">Role or Position</label>
-          <input type="text" placeholder="Sales representative" class="form-control col-xl-12" id="companyRole_1">
-          <div class="companySug" id="sug"></div>
-        </div>
-      </div>
 
-      <div class="form-row">
-        <div class="form-group col-md-6 col-xl-12 tasks">
-          <label class="col-xl-12" for="task_1">Tasks Performed</label>
-          <input type="text" class="form-control col-xl-10" id="task_1"
-            placeholder="Implemented marketing plan that increased sales by 30% and created loyalty among new and existing customers.">
-        </div>
-        <button type="submit" id="addTask" class="col-xl-1 btn btn-primary">add</button>
       </div>
+      <div id="Skill_1" class="border border-info p-3 m-4">
+        <div class="form-row">
+          <div class="col-md-4 col-xl-6 form-group">
+            <label for="skill-1" class="col-xl-12">Skills</label>
+            <input type="text" placeholder="Javascript" id="skill-1" class="col-xl-12">
+          </div>
+          <div class="col-md-4 col-xl-6 form-group">
+            <label for="level-skill-1" class="col-xl-12">Mastery of Skill</label>
+            <select name="" id="level-skill-1" class="form-control" class="col-xl-12">
+              <option value="0">Please select</option>
+              <option value="1">Beginner</option>
+              <option value="2">Intermediate</option>
+              <option value="3">Advanced</option>
+              <option value="4">Expert</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" id="addSkill">ADD Skill</button>
     </div>
-    <div class="append"></div>
-    <button type="submit" class="btn btn-primary" id="addJob">ADD JOB EXPERIENCE</button>
+
+    <div class="languages border border-info p-3 m-4">
+      <h2>Languages</h2>
+      <div class="duplicate-languages border border-success p-3 m-4" style="display: none">
+        <div class="form-row">
+          <div class="col-md-4 col-xl-6 form-group">
+            <label for="language" class="col-xl-12">Language</label>
+            <input type="text" placeholder="Spanish" id="language" class="col-xl-12">
+          </div>
+          <div class="col-md-4 col-xl-6 form-group">
+            <label for="level-language" class="col-xl-12">Mastery of Language</label>
+            <select name="" id="level-language" class="form-control" class="col-xl-12">
+              <option value="0">Please select</option>
+              <option value="1">Beginner</option>
+              <option value="2">Intermediate</option>
+              <option value="3">Advanced</option>
+              <option value="4">Expert</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+      <div id="Language_1" class="border border-info p-3 m-4">
+        <div class="form-row">
+          <div class="col-md-4 col-xl-6 form-group">
+            <label for="language-1" class="col-xl-12">Language</label>
+            <input type="text" placeholder="Spanish" id="language-1" class="col-xl-12">
+          </div>
+          <div class="col-md-4 col-xl-6 form-group">
+            <label for="level-language-1" class="col-xl-12">Mastery of Language</label>
+            <select name="" id="level-language-1" class="form-control" class="col-xl-12">
+              <option value="0">Please select</option>
+              <option value="1">Beginner</option>
+              <option value="2">Intermediate</option>
+              <option value="3">Advanced</option>
+              <option value="4">Expert</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" id="addLanguage">ADD Language</button>
+    </div>
+
+
     <button type="submit" id="submit-jobexperience" class="btn btn-success">Next</button>
   </form>
 
@@ -99,7 +189,8 @@
     //  source: company
     // });
     //});
-    var count=2;
+
+    var origin = location.origin;
 
     $('.company').keyup(function (event) {
       event.preventDefault();
@@ -126,7 +217,7 @@
             div.text(response[x].name);
             div.attr("data-name", response[x].name);
             div.addClass("companySug");
-            
+
           }
           $(".companySug").off();
           $(".companySug").on("click", function (event) {
@@ -151,59 +242,91 @@
         }
       });
     });
+    
     $("#submit").off();
     $("#submit").on("click", function generatePDF(event) {
       event.preventDefault();
-      var print = $(".html");
-      html2pdf().from(print).save();
+      var url = location.href;
+      html2pdf().from(url).save();
     });
 
+    $("#addLanguage").off();
+    $("#addLanguage").on("click", function (event) {
+      event.preventDefault();
+      var lastId = $('div[id^="Language_"]:last');
+      var num = parseInt(lastId.prop("id").match(/\d+/g), 10) + 1;
+      var skillClone = $(".duplicate-languages").clone(true).prop('id', 'Language_' + num);;
+      skillClone.insertBefore("#addLanguage");
+      skillClone.show();
+      skillClone.find("#language").attr("id", "language-" + num);
+      skillClone.find("#level-language").attr("id", "level-language-" + num);
+      skillClone.removeClass("duplicate-languages");
+    })
+
+    $("#addSkill").off();
+    $("#addSkill").on("click", function (event) {
+      event.preventDefault();
+      var lastId = $('div[id^="Skill_"]:last');
+      var num = parseInt(lastId.prop("id").match(/\d+/g), 10) + 1;
+      var skillClone = $(".duplicate-skill").clone(true).prop('id', 'Skill_' + num);;
+      skillClone.insertBefore("#addSkill");
+      skillClone.show();
+      skillClone.find("#skill").attr("id", "Skill-" + num);
+      skillClone.find("#level-skill").attr("id", "level-skill-" + num);
+      skillClone.removeClass("duplicate-skill");
+    })
+
+    $("#addJob").off(); 
     $("#addJob").on("click", function (event) {
       event.preventDefault();
       //$("#experience").clone(true).appendTo(".append").find("input").val("");
-      console.log("1");
-      var jobClone=$(".duplicate").clone(true);
-      console.log("2");
+      var lastId = $('div[id^="Job_"]:last');
+      var num = parseInt(lastId.prop("id").match(/\d+/g), 10) + 1;
+      var jobClone = $(".duplicate-job").clone(true).prop('id', 'Job_' + num);
       jobClone.insertBefore("#addJob");
-      console.log("3");
       jobClone.show();
-      jobClone.attr("id", "Job_"+count);
-      jobClone.find("#YearStart").attr("id", "YearStart_"+count);
-      jobClone.find("#YearEnd").attr("id", "YearEnd_"+count);
-      jobClone.find("#company").attr("id", "company_"+count);
-      jobClone.find("#inputCity").attr("id", "InputCity_"+count);
-      jobClone.find("#inputState").attr("id", "inputState_"+count);
-      jobClone.find("#companyRole").attr("id", "companyRole_"+count);
-      jobClone.find("#task").attr("id", "task_"+count);
-     
-     jobClone.removeClass('duplicate');
-     count++;
+      //jobClone.attr("id", "Job_" + num);
+      jobClone.find("#YearStart").attr("id", "YearStart_" + num);
+      jobClone.find("#YearEnd").attr("id", "YearEnd_" + num);
+      jobClone.find("#company").attr("id", "company_" + num);
+      jobClone.find("#inputCity").attr("id", "InputCity_" + num);
+      jobClone.find("#inputState").attr("id", "inputState_" + num);
+      jobClone.find("#companyRole").attr("id", "companyRole_" + num);
+      jobClone.find("#task").attr("id", "task_" + num);
+
+      jobClone.removeClass('duplicate-job');
     })
 
-    $("#addTask").on("click", function (event) {
+    $(".addTask").off();
+    $(".addTask").on("click", function (event) {
       event.preventDefault();
-      $("#task").clone(true).appendTo(".tasks").find("input").val("");
+      //  $("#task").clone(true).appendTo(".tasks").find("input").val("");
     })
 
-    $("#submit-jobexperience").on("click", function (event){
+    $("#submit-jobexperience").off();
+    $("#submit-jobexperience").on("click", function (event) {
       event.preventDefault();
       console.log("next");
       //extraer todos los datos como objeto, tomando el id del usuario y ligándolo a una tabla
       var userId;
-      var job={
-        company: company,
-        yearStart: yearStart,
-        yearEnd: yearEnd,
-        role: role,
-        tasks: task[], //hacer que sea un array antes
-      }
-         
+      console.log(origin);
+      var url = location.href;
+      console.log(url);
+
+      //location.assign(origin+"/skills");
+      //var job={
+      //  company: company,
+      // yearStart: yearStart,
+      //yearEnd: yearEnd,
+      //role: role,
+      //tasks: task[], //hacer que sea un array antes
+      //}
 
 
-      $.ajax("/api/jobexperience", function(){
-        type: "POST",
-        data: 
-      });
+      //$.ajax("/api/jobexperience", function(){
+      //type: "POST",
+      //data: job,
+      // });
     });
 
   })
