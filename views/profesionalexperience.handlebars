@@ -90,6 +90,80 @@
       <button type="submit" class="btn btn-primary" id="addJob">ADD JOB EXPERIENCE</button>
     </div>
 
+    <div class="Education border border-info p-3 m-4">
+      <h2>Education</h2>
+
+      <div class="duplicate-education border border-success p-3 m-4" style="display: none">
+        <div class="form-row">
+          <div class="form-group col-md-1 col-xl-1">
+            <label for="YearStartSchool">Started</label>
+            <input type="number" min="1950" max="2019" placeholder="2017" id="YearStartSchool" class="form-control">
+          </div>
+          <div class="form-group col-md-1 col-xl-1">
+            <label for="YearEndSchool">Ended</label>
+            <input type="number" min="1950" max="2019" placeholder="2019" id="YearEndSchool" class="form-control">
+          </div>
+          <div class="form-group col-md-1 col-xl-10">
+            <label for="school" class="col-xl-12">School</label>
+            <input type="text" id="school" class="autocomplete form-control col-xl-12 company" autocomplete="off">
+            <div class="school" id="sugSchool"></div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6 col-xl-3">
+            <label for="inputCitySchool">City</label>
+            <input type="text" class="form-control" id="inputCitySchool" placeholder="Monterrey">
+          </div>
+          <div class="form-group col-md-4 col-xl-3">
+            <label for="inputStateSchool">State</label>
+            <input type="text" class="form-control" id="inputStateSchool" placeholder="Nuevo León">
+          </div>
+          <div class="form-group col-md-4 col-xl-6">
+            <label for="Program" class="col-xl-12">Program</label>
+            <input type="text" placeholder="Sales representative" class="form-control col-xl-12" id="Program">
+          </div>
+        </div>
+
+      </div>
+
+      <div id="School_1" class="border border-success p-3 m-4">
+        <div class="form-row">
+          <div class="form-group col-md-1 col-xl-1">
+            <label for="YearStartSchool_1">Started</label>
+            <input type="number" min="1950" max="2019" placeholder="2017" id="YearStartSchool_1" class="form-control">
+          </div>
+          <div class="form-group col-md-1 col-xl-1">
+            <label for="YearEndSchool_1">Ended</label>
+            <input type="number" min="1950" max="2019" placeholder="2019" id="YearEndSchool_1" class="form-control">
+          </div>
+          <div class="form-group col-md-1 col-xl-10">
+            <label for="school_1" class="col-xl-12">School</label>
+            <input type="text" id="school_1" class="autocomplete form-control col-xl-12 company" autocomplete="off">
+            <div class="companySug" id="sugSchool_1"></div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6 col-xl-3">
+            <label for="inputCitySchool_1">City</label>
+            <input type="text" class="form-control" id="inputCitySchool_1">
+          </div>
+          <div class="form-group col-md-4 col-xl-3">
+            <label for="inputStateSchool_1">State</label>
+            <input type="text" class="form-control" id="inputStateSchool_1">
+          </div>
+          <div class="form-group col-md-4 col-xl-6">
+            <label for="Program_1" class="col-xl-12">Program</label>
+            <input type="text" placeholder="Sales representative" class="form-control col-xl-12" id="Program_1">
+          </div>
+        </div>
+
+      </div>
+
+      <button type="submit" class="btn btn-primary" id="addEducation">ADD EDUCATION</button>
+    </div>
+
     <div class="skills border border-danger p-3 m-4">
       <h2>Skills</h2>
       <div class="duplicate-skill border border-success p-3 m-4" style="display: none">
@@ -174,7 +248,6 @@
       <button type="submit" class="btn btn-primary" id="addLanguage">ADD Language</button>
     </div>
 
-
     <button type="submit" id="submit-jobexperience" class="btn btn-success">Next</button>
   </form>
 
@@ -242,7 +315,7 @@
         }
       });
     });
-    
+
     $("#submit").off();
     $("#submit").on("click", function generatePDF(event) {
       event.preventDefault();
@@ -276,7 +349,7 @@
       skillClone.removeClass("duplicate-skill");
     })
 
-    $("#addJob").off(); 
+    $("#addJob").off();
     $("#addJob").on("click", function (event) {
       event.preventDefault();
       //$("#experience").clone(true).appendTo(".append").find("input").val("");
@@ -296,6 +369,19 @@
 
       jobClone.removeClass('duplicate-job');
     })
+
+    $("#addEducation").off();
+    $("#addEducation").on("click", function(event){
+      event.preventDefault();
+      var lastId = $('div[id^="School_"]:last');
+      var num = parseInt(lastId.prop("id").match(/\d+/g), 10) + 1;
+      var educationClone = $(".duplicate-education").clone(true).prop('id', 'School_' + num);
+      educationClone.insertBefore("#addEducation");
+      educationClone.show();
+      educationClone.find("#YearStartSchool").attr("id", "YearStartSchool_" + num);
+      educationClone.removeClass("duplicate-education");
+
+    });
 
     $(".addTask").off();
     $(".addTask").on("click", function (event) {
