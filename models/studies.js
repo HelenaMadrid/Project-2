@@ -2,7 +2,7 @@ module.exports = function(sequelize, DataTypes) {
   var Studies = sequelize.define(
     "Studies",
     {
-      entryDate: {
+      entryDateSchool: {
         type: DataTypes.STRING,
         allowNull: false,
 
@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
         }
       },
 
-      leaveDate: {
+      leaveDateSchool: {
         type: DataTypes.STRING,
         allowNull: false,
 
@@ -20,7 +20,7 @@ module.exports = function(sequelize, DataTypes) {
         }
       },
 
-      grade: {
+      degree: {
         type: DataTypes.STRING,
         allowNull: false,
 
@@ -29,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
         }
       },
 
-      title: {
+      school: {
         type: DataTypes.STRING,
         allowNull: false,
 
@@ -38,7 +38,16 @@ module.exports = function(sequelize, DataTypes) {
         }
       },
 
-      place: {
+      citySchool: {
+        type: DataTypes.STRING,
+        allowNull: false,
+
+        validate: {
+          len: [1, 140]
+        }
+      },
+
+      stateSchool:{
         type: DataTypes.STRING,
         allowNull: false,
 

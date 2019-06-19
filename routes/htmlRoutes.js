@@ -22,9 +22,8 @@ module.exports = function (app) {
   app.get("/profesionalexperience",  authenticationMiddleware(), function(req, res) {
     res.render("profesionalexperience");
   });
-  app.get("/skills", authenticationMiddleware(), function(req,res){
-    res.render("skills");
-  });
+  
+
 
   app.get("/logout", function(req, res) {
     req.logout();
@@ -61,6 +60,12 @@ module.exports = function (app) {
 
   app.post("/skills", authenticationMiddleware(), function (req, res) {
     db.Skills.create({ ...req.body, UserId: req.session.passport.user }).then(function () {
+      res.redirect("/profile");
+    });
+  });
+
+  app.post("/languages", authenticationMiddleware(), function (req, res) {
+    db.Languages.create({ ...req.body, UserId: req.session.passport.user }).then(function () {
       res.redirect("/profile");
     });
   });
