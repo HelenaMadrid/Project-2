@@ -140,6 +140,18 @@ module.exports = function (app) {
     });
   });
 
+  app.post("/deletelanguages/:id", function (req, res) {
+    // We just have to specify which todo we want to destroy with "where"
+    db.Languages.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (dbTodo) {
+      res.redirect("/profile");
+    });
+  });
+
+
 };
 
 function authenticationMiddleware() {

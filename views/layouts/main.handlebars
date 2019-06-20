@@ -46,8 +46,21 @@
   <script src="../../public/js/bootstrap-typeahead.js"></script>
 
   <script>
+
     $(document).ready(function () {
       //$('.datepicker').datepicker();
+
+
+
+      var image = $("#profile-pic");
+       if (image[0].height > 19) {
+        console.log("si hay foto");
+        image.show();
+      }
+      else {
+        console.log("no hay foto");
+        image.hide();
+      }
 
       $("#company_1").typeahead({
         source: [
@@ -63,6 +76,7 @@
           { id: 10, name: 'Los Angeles' }
         ]
       });
+
 
 
 
@@ -117,7 +131,10 @@
           }
         });
       });
+
     });
+
+
 
   </script>
 </body>
