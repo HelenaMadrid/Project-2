@@ -66,6 +66,13 @@ module.exports = function(app) {
         //   }
         //   res.redirect("/login");
         // });
+      }).catch(function(err) {
+        // console.log(err);
+        res.render("register", {
+          title: "Registration Error",
+          errors: err,
+          message: "That username is already registered. Try another one."
+        });
       });
     }
   });

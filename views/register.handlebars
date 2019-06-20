@@ -27,7 +27,9 @@
 
         {{#if errors}}
             <div id="errors">
+                <br>
                 <b>Please review your submitted information:</b>
+                <p class="error">{{message}}</p>
                 {{#each errors}}
                     <div>
                         <p class="error">{{this.msg}}</p>
