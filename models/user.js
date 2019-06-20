@@ -57,11 +57,10 @@ module.exports = function(sequelize, DataTypes) {
     User.hasMany(models.GeneralInfo, {
       foreignKey: "UserId"
     });
+    User.hasMany(models.Languages, {
+      foreignKey: "UserId"
+    });
   };
-  // User.hasMany(models.Experience); 
-  // User.hasMany(models.Studies); 
-  // User.hasMany(models.Skills); 
-  // User.hasMany(models.GeneralInfo); 
 
   return User;
 };

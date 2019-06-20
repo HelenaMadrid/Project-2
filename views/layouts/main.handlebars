@@ -42,8 +42,21 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
   <script>
+
     $(document).ready(function () {
       //$('.datepicker').datepicker();
+
+
+      var image = $("#profile-pic");
+       if (image[0].height > 19) {
+        console.log("si hay foto");
+        image.show();
+      }
+      else {
+        console.log("no hay foto");
+        image.hide();
+      }
+
 
       $('#company_1').keyup(function (event) {
         event.preventDefault();
@@ -147,7 +160,10 @@
           }
         });
       });
+
     });
+
+
 
   </script>
 </body>

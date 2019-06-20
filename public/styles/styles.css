@@ -16,6 +16,10 @@
   background-color: #f2f5fa !important;
 }
 
+.uppercase {
+  text-transform: uppercase;
+  }
+
 .slider-section{
   color:#f5f5f5;
   background-image: url("../images/slider.jpg")
