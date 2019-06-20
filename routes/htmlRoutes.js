@@ -19,14 +19,26 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/profesionalexperience",  authenticationMiddleware(), function(req, res) {
-    res.render("profesionalexperience");
-  });
-  app.get("/skills", authenticationMiddleware(), function(req,res){
-    res.render("skills");
+  app.get("/print", authenticationMiddleware(), function (req, res) {
+    db.User.findAll({
+      where: {
+        id: req.session.passport.user
+      },
+      include: [{ all: true }]
+    }).then(function (results) {
+      // console.log(results[0].dataValues);
+      // eslint-disable-next-line camelcase
+      res.render("print", { data: results[0] });
+    });
   });
 
-  app.get("/logout", function(req, res) {
+  app.get("/profesionalexperience", authenticationMiddleware(), function (req, res) {
+      res.render("profesionalexperience");
+  });
+
+
+
+  app.get("/logout", function (req, res) {
     req.logout();
     req.session.destroy(function () {
       res.clearCookie("connect.sid");
@@ -65,6 +77,12 @@ module.exports = function (app) {
     });
   });
 
+  app.post("/languages", authenticationMiddleware(), function (req, res) {
+    db.Languages.create({ ...req.body, UserId: req.session.passport.user }).then(function () {
+      res.redirect("/profile");
+    });
+  });
+
   app.post("/studies", authenticationMiddleware(), function (req, res) {
     db.Studies.create({ ...req.body, UserId: req.session.passport.user }).then(function () {
       res.redirect("/profile");
@@ -82,7 +100,7 @@ module.exports = function (app) {
     });
   });
 
-  
+
   app.post("/deleteexp/:id", function (req, res) {
     // We just have to specify which todo we want to destroy with "where"
     db.Experience.destroy({
@@ -94,7 +112,7 @@ module.exports = function (app) {
     });
   });
 
-  
+
   app.post("/deletestudies/:id", function (req, res) {
     // We just have to specify which todo we want to destroy with "where"
     db.Studies.destroy({
@@ -110,7 +128,7 @@ module.exports = function (app) {
     res.render("404");
   });
 
-  
+
   app.post("/deleteskills/:id", function (req, res) {
     // We just have to specify which todo we want to destroy with "where"
     db.Skills.destroy({

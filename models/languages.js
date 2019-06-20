@@ -1,8 +1,8 @@
 module.exports = function(sequelize, DataTypes) {
-  var Skills = sequelize.define(
-    "Skills",
+  var Languages = sequelize.define(
+    "Languages",
     {
-      skillName: {
+      language: {
         type: DataTypes.STRING,
         allowNull: false,
 
@@ -12,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
         }
       },
 
-      skillLevel: {
+      languageLevel: {
         type: DataTypes.STRING,
         allowNull: false,
 
@@ -26,15 +26,15 @@ module.exports = function(sequelize, DataTypes) {
     }
   );
 
-  Skills.associate = function(models) {
+  Languages.associate = function(models) {
     // We're saying that a Post should belong to an Author
     // A Post can't be created without an Author due to the foreign key constraint
-    Skills.belongsTo(models.User, {
+    Languages.belongsTo(models.User, {
       foreignKey: {
         foreignKey: "id"
       }
     });
   };
 
-  return Skills;
+  return Languages;
 };
