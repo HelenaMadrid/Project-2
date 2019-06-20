@@ -15,7 +15,7 @@
           </div>
           <div class="form-group col-md-1 col-xl-10">
             <label for="company" class="col-xl-12">Company</label>
-            <input type="text" id="company" name="company" class="autocomplete form-control col-xl-12 company" autocomplete="off">
+            <input type="text" id="company" name="company" class="autocomplete form-control col-xl-12 companyt" autocomplete="off">
             <div class="companySug" id="sug"></div>
           </div>
         </div>
@@ -63,8 +63,8 @@
           </div>
           <div class="form-group col-md-1 col-xl-10">
             <label for="company_1" class="col-xl-12">Company</label>
-            <input type="text" id="company_1" class="autocomplete form-control col-xl-12 company" autocomplete="off">
-            <div class="companySug" id="sug"></div>
+            <input type="text" id="company_1" class="autocomplete form-control col-xl-12 companyt" autocomplete="off">
+            <div class="companySug" id="companySug"></div>
           </div>
         </div>
 
@@ -267,169 +267,5 @@
 
 </div>
 
-<script>
-  $(document).ready(function () {
-    //var Api2Pdf = require('api2pdf');   
-    //var a2pClient = new Api2Pdf('591b4741-015b-40c1-a51c-21e77ce15bbb');
-    //var company=["apple", "microsoft", "google"];
-    //  $('input.autocomplete').autocomplete({
-    //  source: company
-    // });
-    //});
 
-    var origin = location.origin;
-
-    $('.company').keyup(function (event) {
-      event.preventDefault();
-      $("#sug").empty();
-      var truefalse = true;
-      console.log("h");
-      var selected = "";
-      var company = $(".company").val().trim();
-      console.log(company);
-      $.ajax({
-        type: "GET",
-        url: "https://autocomplete.clearbit.com/v1/companies/suggest?query=" + company,
-        async: true,
-        dataType: "json",
-        success: function (response) {
-          var outArr = [];
-          console.log(response);
-          //console.log(response[0]);
-          //console.log(response.length);
-          for (var x = 0; x < response.length; x++) {
-            //console.log(response[x].name);
-            var div = $("<div>");
-            $("#sug").append(div);
-            div.text(response[x].name);
-            div.attr("data-name", response[x].name);
-            div.addClass("companySug");
-
-          }
-          $(".companySug").off();
-          $(".companySug").on("click", function (event) {
-            if (truefalse === true) {
-              event.preventDefault();
-              console.log("hola");
-              selected = $(this).attr("data-name");
-              $('.company').text(selected);
-              // var selected = $(this).val();
-              //console.log($(this));
-              console.log("selected " + selected);
-              truefalse = false;
-            }
-            else {
-              console.log("not");
-            }
-          })
-        },
-        error: function (xhr, status, err) {
-          // This time, we do not end up here!
-
-        }
-      });
-    });
-
-    $("#submit").off();
-    $("#submit").on("click", function generatePDF(event) {
-      event.preventDefault();
-      var url = location.href;
-      html2pdf().from(url).save();
-    });
-
-    $("#addLanguage").off();
-    $("#addLanguage").on("click", function (event) {
-      event.preventDefault();
-      var lastId = $('div[id^="Language_"]:last');
-      var num = parseInt(lastId.prop("id").match(/\d+/g), 10) + 1;
-      var skillClone = $(".duplicate-languages").clone(true).prop('id', 'Language_' + num);;
-      skillClone.insertBefore("#addLanguage");
-      skillClone.show();
-      skillClone.find("#language").attr("id", "language-" + num);
-      skillClone.find("#level-language").attr("id", "level-language-" + num);
-      skillClone.removeClass("duplicate-languages");
-    })
-
-    $("#addSkill").off();
-    $("#addSkill").on("click", function (event) {
-      event.preventDefault();
-      var lastId = $('div[id^="Skill_"]:last');
-      var num = parseInt(lastId.prop("id").match(/\d+/g), 10) + 1;
-      var skillClone = $(".duplicate-skill").clone(true).prop('id', 'Skill_' + num);;
-      skillClone.insertBefore("#addSkill");
-      skillClone.show();
-      skillClone.find("#skill").attr("id", "Skill-" + num);
-      skillClone.find("#level-skill").attr("id", "level-skill-" + num);
-      skillClone.removeClass("duplicate-skill");
-    })
-
-    $("#addJob").off();
-    $("#addJob").on("click", function (event) {
-      event.preventDefault();
-      //$("#experience").clone(true).appendTo(".append").find("input").val("");
-      var lastId = $('div[id^="Job_"]:last');
-      var num = parseInt(lastId.prop("id").match(/\d+/g), 10) + 1;
-      var jobClone = $(".duplicate-job").clone(true).prop('id', 'Job_' + num);
-      jobClone.insertBefore("#addJob");
-      jobClone.show();
-      //jobClone.attr("id", "Job_" + num);
-      jobClone.find("#YearStart").attr("id", "YearStart_" + num);
-      jobClone.find("#YearEnd").attr("id", "YearEnd_" + num);
-      jobClone.find("#company").attr("id", "company_" + num);
-      jobClone.find("#inputCity").attr("id", "InputCity_" + num);
-      jobClone.find("#jobDescription").attr("id", "jobDescription_"+num)
-      jobClone.find("#inputState").attr("id", "inputState_" + num);
-      jobClone.find("#jobTitle").attr("id", "jobTitle_" + num);
-      jobClone.find("#task").attr("id", "task_" + num);
-
-      jobClone.removeClass('duplicate-job');
-    })
-
-    $("#addEducation").off();
-    $("#addEducation").on("click", function(event){
-      event.preventDefault();
-      var lastId = $('div[id^="School_"]:last');
-      var num = parseInt(lastId.prop("id").match(/\d+/g), 10) + 1;
-      var educationClone = $(".duplicate-education").clone(true).prop('id', 'School_' + num);
-      educationClone.insertBefore("#addEducation");
-      educationClone.show();
-      educationClone.find("#entryDateSchool").attr("id", "entryDateSchool_" + num);
-      educationClone.removeClass("duplicate-education");
-
-    });
-
-    $(".addTask").off();
-    $(".addTask").on("click", function (event) {
-      event.preventDefault();
-      //  $("#task").clone(true).appendTo(".tasks").find("input").val("");
-    })
-
-    $("#submit-jobexperience").off();
-    $("#submit-jobexperience").on("click", function (event) {
-      event.preventDefault();
-      console.log("next");
-      //extraer todos los datos como objeto, tomando el id del usuario y ligándolo a una tabla
-      var userId;
-      console.log(origin);
-      var url = location.href;
-      console.log(url);
-
-      //location.assign(origin+"/skills");
-      //var job={
-      //  company: company,
-      // yearStart: yearStart,
-      //yearEnd: yearEnd,
-      //role: role,
-      //tasks: task[], //hacer que sea un array antes
-      //}
-
-
-      //$.ajax("/api/jobexperience", function(){
-      //type: "POST",
-      //data: job,
-      // });
-    });
-
-  })
-
-</script>
+    
