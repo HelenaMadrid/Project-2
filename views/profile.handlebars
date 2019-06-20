@@ -138,12 +138,16 @@
 
                             <div class="form-row">
                                 <div class="form-group col-md-6 col-xl-12 tasks">
-                                    <label class="col-xl-12" for="task">Tasks Performed</label>
-                                    <input style="display:none" type="text" class="clone-task form-control col-xl-10"
+                                    <label class="col-xl-12" for="tasks">Tasks Performed</label>
+                                    {{!-- <input style="display:none" type="text" class="clone-task form-control col-xl-10"
                                         name="task" id="task"
-                                        placeholder="Implemented marketing plan that increased sales by 30% and created loyalty among new and existing customers." required>
+                                        placeholder="Implemented marketing plan that increased sales by 30% and created loyalty among new and existing customers." required> --}}
                                     <input type="text" class="form-control col-xl-10" name="task1" id="task1"
-                                        placeholder="Implemented marketing plan that increased sales by 30% and created loyalty among new and existing customers." required>
+                                        placeholder="Example: Implemented marketing plan that increased sales by 30%." required>
+                                    <input type="text" class="form-control col-xl-10" name="task2" id="task2" placeholder="Task number 2.">
+                                    <input type="text" class="form-control col-xl-10" name="task3" id="task3" placeholder="Task number 3.">
+                                    <input type="text" class="form-control col-xl-10" name="task4" id="task4" placeholder="Task number 4.">
+                                    <input type="text" class="form-control col-xl-10" name="task5" id="task5" placeholder="Task number 5.">
                                     <!--<button type="submit" id="addTask" class="col-xl-1 btn btn-primary m-4">add</button>-->
                                 </div>
                             </div>
@@ -164,7 +168,15 @@
                         <h6><strong>City: </strong>{{city}}</h6>
                         <h6><strong>State: </strong>{{state}}</h6>
                         <h6><strong>Description: </strong>{{description}}</h6>
-                        <h6><strong>Tasks: </strong>{{task1}}</h6>
+                        <h6><strong>Tasks:</strong>
+                            <br>
+                            <ul>                                
+                                {{#if task1}}<li>{{task1}}</li>{{/if}}
+                                {{#if task2}}<li>{{task2}}</li>{{/if}}
+                                {{#if task3}}<li>{{task3}}</li>{{/if}}
+                                {{#if task4}}<li>{{task4}}</li>{{/if}}
+                                {{#if task5}}<li>{{task5}}</li>{{/if}}
+                            </ul>
                         <form action="/deleteexp/{{id}}" method="POST">
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
