@@ -1,4 +1,4 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
   var Experience = sequelize.define(
     "Experience",
     {
@@ -29,7 +29,7 @@ module.exports = function (sequelize, DataTypes) {
         }
       },
 
-      state:{
+      state: {
         type: DataTypes.STRING,
         allowNull: false,
 
@@ -73,50 +73,44 @@ module.exports = function (sequelize, DataTypes) {
           len: [1, 140]
         }
       },
-
       task2: {
         type: DataTypes.STRING,
         allowNull: true,
-
         validate: {
-          len: [1, 140]
+          len: [0, 140]
         }
       },
 
       task3: {
         type: DataTypes.STRING,
         allowNull: true,
-
         validate: {
-          len: [1, 140]
+          len: [0, 140]
         }
       },
 
       task4: {
         type: DataTypes.STRING,
         allowNull: true,
-
         validate: {
-          len: [1, 140]
+          len: [0, 140]
         }
       },
 
       task5: {
         type: DataTypes.STRING,
         allowNull: true,
-
         validate: {
-          len: [1, 140]
+          len: [0, 140]
         }
       }
-
     },
     {
       timestamps: false
     }
   );
 
-  Experience.associate = function (models) {
+  Experience.associate = function(models) {
     // We're saying that a Post should belong to an Author
     // A Post can't be created without an Author due to the foreign key constraint
     Experience.belongsTo(models.User, {
