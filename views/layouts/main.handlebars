@@ -41,6 +41,10 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.2/js/mdb.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+  <script src="../../public/js/bootstrap.min.js"></script>
+  <script src="../../public/js/jquery.mockjax.js"></script>
+  <script src="../../public/js/bootstrap-typeahead.js"></script>
+
   <script>
 
     $(document).ready(function () {
@@ -57,57 +61,22 @@
         image.hide();
       }
 
-
-      $('#company_1').keyup(function (event) {
-        event.preventDefault();
-        $("#companySug").empty();
-        var truefalse = true;
-        console.log("h");
-        var selected = "";
-        var company = $("#company_1").val().trim();
-        console.log(company);
-        $.ajax({
-          type: "GET",
-          url: "https://autocomplete.clearbit.com/v1/companies/suggest?query=" + company,
-          async: true,
-          dataType: "json",
-          success: function (response) {
-            var outArr = [];
-            console.log(response);
-            //console.log(response[0]);
-            //console.log(response.length);
-            for (var x = 0; x < response.length; x++) {
-              //console.log(response[x].name);
-              var div = $("<div>");
-              $("#companySug").append(div);
-              div.text(response[x].name);
-              div.attr("data-name", response[x].name);
-              div.addClass("companySug");
-
-            }
-            $(".companySug").off();
-            $(".companySug").on("click", function (event) {
-              if (truefalse === true) {
-                event.preventDefault();
-                console.log("hola");
-                selected = $(this).attr("data-name");
-                $('.company').text(selected);
-                // var selected = $(this).val();
-                //console.log($(this));
-                console.log("selected " + selected);
-                truefalse = false;
-              }
-              else {
-                console.log("not");
-              }
-            })
-          },
-          error: function (xhr, status, err) {
-            // This time, we do not end up here!
-
-          }
-        });
+      $("#company_1").typeahead({
+        source: [
+          { id: 1, name: 'Toronto' },
+          { id: 2, name: 'Montreal' },
+          { id: 3, name: 'New York' },
+          { id: 4, name: 'Buffalo' },
+          { id: 5, name: 'Boston' },
+          { id: 6, name: 'Columbus' },
+          { id: 7, name: 'Dallas' },
+          { id: 8, name: 'Vancouver' },
+          { id: 9, name: 'Seattle' },
+          { id: 10, name: 'Los Angeles' }
+        ]
       });
+
+
 
       $("#addTask").off();
       $("#addTask").on("click", function (event) {

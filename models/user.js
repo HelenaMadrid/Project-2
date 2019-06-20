@@ -54,6 +54,9 @@ module.exports = function(sequelize, DataTypes) {
     User.hasMany(models.Skills, {
       foreignKey: "UserId"
     });
+    User.hasMany(models.Languages, {
+      foreignKey: "UserId"
+    });
     User.hasMany(models.GeneralInfo, {
       foreignKey: "UserId"
     });
