@@ -17,7 +17,6 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.2/css/mdb.min.css" rel="stylesheet">
   <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="Stylesheet"
     type="text/css" />
-
 </head>
 
 
@@ -50,7 +49,11 @@
   <script>
 
     $(document).ready(function () {
-      //$('.datepicker').datepicker();
+      $('.datepicker').datepicker({
+        format: "yyyy",
+        viewMode: "years",
+        minViewMode: "years"
+      });
 
 
 
@@ -63,6 +66,7 @@
       // console.log("no hay foto");
       //image.hide();
       //}
+
 
       $("#printPDF").off();
       $("#printPDF").on("click", function (event) {
