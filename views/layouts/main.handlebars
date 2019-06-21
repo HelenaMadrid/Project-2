@@ -84,7 +84,10 @@
           console.log(skills.length);
           console.log(studies.length);
           var experiencesPrint;
-          var expArr = [];
+          var experienceArr = [];
+          var studiesArr = [];
+          var skillsArr = [];
+          var languagesArr = [];
           for (var x = 0; x < experience.length; x++) {
             experiencesPrint = [
               {
@@ -125,31 +128,63 @@
               },
               {
                 columns: [
-                {
-                  width: 160,
-                  text: "",
-                },
-                {
-                  width:"*",
-                  ul: [
-                  experience[x].task1,
-                  experience[x].task2
-                ]
-                }]
+                  {
+                    width: 160,
+                    text: "",
+                  },
+                  {
+                    width: "*",
+                    ul: [
+                      experience[x].task1,
+                      experience[x].task2
+                    ]
+                  }]
               }
 
             ]
 
 
-            expArr.push(experiencesPrint);
+            experienceArr.push(experiencesPrint);
           }
 
+          for (var x = 0; x < studies.length; x++) {
+            studiesPrint = [
+              {
+                columns: [
+                  {
+                    width: 140, alignment: 'center',
+                    text: studies[x].entryDateSchool + "-" + studies[x].leaveDateSchool,
+                  },
+                  {
+                    width: '*',
+                    text: studies[x].school, bold: true,
+                  }
+                ]
+              },
+              {
+                columns: [
+                  {
+                    width: 140, alignment: 'center',
+                    text: studies[x].citySchool + ", " + studies[x].stateSchool,
+                  },
+                  {
+                    width: '*',
+                    text: studies[x].degree, italics: true,
+                  }
+                ]
+              }
+            ]
+
+
+            studiesArr.push(studiesPrint);
+          }
           var docDefinition = {
             content: [
-              expArr
+              experienceArr,
+              studiesArr
             ]
           }
-          pdfMake.createPdf(docDefinition).open();
+          pdfMake.createPdf(docDefinition).download();
         });
 
 
