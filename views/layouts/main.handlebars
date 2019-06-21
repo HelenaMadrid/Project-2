@@ -70,26 +70,51 @@
         //var source = document.getElementById("entry-template").innerHTML;
         //var template = Handlebars.compile(source);
         //var dates = $("#dates").text();
-        $.get("/print/all", function(data) {
-          var experience=data[0].Experiences;
-          var languages=data[0].Languages;
-          var skills=data[0].Skills;
-          var studies=data[0].Studies;
-          var generalInfo=data[0].GeneralInfos;
-        console.log(data);
-        console.log(data[0].username);
-        console.log(experience);
-        console.log(experience.length);
-        console.log(languages.length);
-        console.log(skills.length);
-        console.log(studies.length);
+        $.get("/print/all", function (data) {
+          var experience = data[0].Experiences;
+          var languages = data[0].Languages;
+          var skills = data[0].Skills;
+          var studies = data[0].Studies;
+          var generalInfo = data[0].GeneralInfos;
+          console.log(data);
+          console.log(data[0].username);
+          console.log(experience);
+          console.log(experience.length);
+          console.log(languages.length);
+          console.log(skills.length);
+          console.log(studies.length);
+          var experiencesPrint;
+          var expArr = [];
+          for (var x = 0; x < experience.length; x++) {
+            experiencesPrint =
+
+              {
+                columns: [
+                  {
+                    width: 140, alignment: 'center',
+                    text: experience[x].city +", "+ experience[x].state,
+                  },
+                  {
+                    width: '*',
+                    text: experience[x].jobTitle,
+                  }
+                ]
+              }
+            expArr.push(experiencesPrint);
+          }
+
+            var docDefinition = {
+              content: [
+                expArr
+              ]
+            }
+          
+
+          pdfMake.createPdf(docDefinition).open();
+        });
+
+
       });
-
-
-        //pdfMake.createPdf(docDefinition).download();
-      });
-
-
     });
 
 
