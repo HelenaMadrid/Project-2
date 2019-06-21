@@ -55,15 +55,12 @@
       //   minViewMode: "years"
       // });
 
-      // var image = $("#profile-pic");
-      // if (image[0].height > 19) {
-      //  console.log("si hay foto");
-      //  image.show();
-      //}
-      //else {
-      // console.log("no hay foto");
-      //image.hide();
-      //}
+      var image = $("#profile-pic");
+      if(image.attr("src") == "null"){
+        image.hide();
+      }else{
+        image.show();
+      }
 
 
       $("#printPDF").off();

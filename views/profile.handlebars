@@ -1,7 +1,7 @@
 <div class="container">
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
         <div class="text-center">
-            <img id="profile-pic" src="{{data.GeneralInfos.0.profilePic}}" alt="...">
+            <img id="profile-pic" src="{{data.GeneralInfos.0.profilePic}}" onError="this.onerror=null;this.src='null';" alt="...">
         </div>
         <h1 class="display-4 uppercase">{{data.username}}</h1>
         <p class="lead">My details.</p>
