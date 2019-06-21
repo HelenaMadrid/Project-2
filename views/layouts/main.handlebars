@@ -49,13 +49,11 @@
   <script>
 
     $(document).ready(function () {
-      $('.datepicker').datepicker({
-        format: "yyyy",
-        viewMode: "years",
-        minViewMode: "years"
-      });
-
-
+      // $('.datepicker').datepicker({
+      //   format: "yyyy",
+      //   viewMode: "years",
+      //   minViewMode: "years"
+      // });
 
       // var image = $("#profile-pic");
       // if (image[0].height > 19) {
@@ -184,11 +182,19 @@
           }
           var docDefinition = {
             content: [
+              {
+                text: 'Experience\n\n', bold: true, fontSize: 14,
+
+              },
               experienceArr,
+              {
+                text: 'Education\n\n', bold: true, fontSize: 14,
+
+              },
               studiesArr
             ]
           }
-          pdfMake.createPdf(docDefinition).download();
+          pdfMake.createPdf(docDefinition).open();
         });
 
 
