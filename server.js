@@ -56,7 +56,7 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.locals.isAuthenticated = req.isAuthenticated();
   next();
 });
@@ -66,12 +66,12 @@ require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
 passport.use(
-  new LocalStrategy(function(username, password, done) {
+  new LocalStrategy(function (username, password, done) {
     db.User.findAll({
       where: {
         username: username
       }
-    }).then(function(dbUser) {
+    }).then(function (dbUser) {
       // console.log(dbUser);
       if (dbUser === undefined || dbUser.length === 0) {
         console.log("Username not found");
@@ -79,7 +79,7 @@ passport.use(
       } else {
         var hash = dbUser[0].dataValues.password;
         var id = dbUser[0].dataValues.id;
-        bcrypt.compare(password, hash, function(err, response) {
+        bcrypt.compare(password, hash, function (err, response) {
           if (response === true) {
             console.log("Successfully Logged-in");
             return done(null, id);
@@ -102,8 +102,8 @@ if (process.env.NODE_ENV === "test") {
 }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
+db.sequelize.sync(syncOptions).then(function () {
+  app.listen(PORT, function () {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,
