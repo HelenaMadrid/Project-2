@@ -1,9 +1,7 @@
 <div class="container">
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
         <div class="text-center">
-            <img id="profile-pic" src="{{data.GeneralInfos.0.profilePic}}"
-                style="object-fit: cover; width:200px; height:200px; border-radius: 50%; border-width: 3px; border-style: solid; border-color: green;"
-                alt="...">
+            <img id="profile-pic" src="{{data.GeneralInfos.0.profilePic}}" alt="...">
         </div>
         <h1 class="display-4 uppercase">{{data.username}}</h1>
         <p class="lead">My details.</p>
@@ -11,25 +9,25 @@
     <div class="row my-4">
         <div class="col-12 col-md-12 col-lg-12">
             <div class="card">
-                <div class="card-header">
-                    <h4>
-                        <strong>General Information</strong>
-                        <button class="btn btn-primary" type="button" data-toggle="collapse"
-                            data-target="#collapseFormGeneral" aria-expanded="false"
-                            aria-controls="collapseFormGeneral">
-                            Add New
+                <div class="card-header gradient-card-header blue-gradient">
+                    <h2>
+                        <i class="fas fa-info-circle"></i><strong> General Information</strong>
+                        <button class="btn" type="button" data-toggle="collapse" data-target="#collapseFormGeneral"
+                            aria-expanded="false" aria-controls="collapseFormGeneral">
+                            <i class="fas fa-plus"></i>
                         </button>
-                    </h4>
+                    </h2>
                 </div>
                 <div class="collapse" id="collapseFormGeneral">
                     <div class="card-body">
                         <form action="/general" method="POST">
                             <div class="form-row">
-                                <div class="form-group col-md-8">
+                                <div class="form-group col-sm-12 col-md-8 col-lg-8">
                                     <label for="name">Name</label>
-                                    <input type="text" class="form-control" name="name" id="name" placeholder="Name" required>
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="Name"
+                                        required>
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-sm-12 col-md-4 col-lg-4">
                                     <label for="description">Description</label>
                                     <input type="text" class="form-control" name="description" id="description"
                                         placeholder="Description" required>
@@ -41,14 +39,14 @@
                                     <input type="text" class="form-control" name="address" id="address"
                                         placeholder="Address" required>
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-sm-12 col-md-6 col-lg-6">
                                     <label for="phone">Phone</label>
                                     <input type="text" class="form-control" name="phone" id="phone"
                                         placeholder="Phone Number" required>
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-md-12">
+                                <div class="form-group col-sm-12 col-md-12 col-lg-12">
                                     <label for="address">Profile Pic URL</label>
                                     <input type="text" class="form-control" name="profilePic" id="profilePic"
                                         placeholder="profilePic" required>
@@ -67,7 +65,8 @@
                         <h6><strong>Address: </strong>{{address}}</span></h6>
                         <h6><strong>Phone: </strong>{{phone}}</span></h6>
                         <form action="/deletegeneral/{{id}}" method="POST">
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i>
+                                Delete</button>
                         </form>
                     </div>
                     <hr>
@@ -80,74 +79,82 @@
     <div class="row my-4">
         <div class="col-12 col-md-12 col-lg-12">
             <div class="card">
-                <div class="card-header">
-                    <h4>
-                        <strong>Experience</strong>
-                        <button class="btn btn-primary" type="button" data-toggle="collapse"
-                            data-target="#collapseFormExp" aria-expanded="false" aria-controls="collapseFormExp">
-                            Add New
+                <div class="card-header gradient-card-header blue-gradient">
+                    <h2>
+                        <i class="fas fa-cogs"></i><strong> Experience</strong>
+                        <button class="btn" type="button" data-toggle="collapse" data-target="#collapseFormExp"
+                            aria-expanded="false" aria-controls="collapseFormExp">
+                            <i class="fas fa-plus"></i>
                         </button>
-                    </h4>
+                    </h2>
                 </div>
                 <div class="collapse" id="collapseFormExp">
                     <div class="card-body">
                         <form action="/experience" method="POST">
                             <div class="form-row">
-                                <div class="form-group col-md-1 col-xl-1">
+                                <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                                    <label for="company">Company</label>
+                                    <input type="text" id="company" name="company"
+                                        class="autocomplete form-control col-xl-12 company" placeholder="Company Name"
+                                        autocomplete="off" required>
+                                    <div class="companySug" id="sug"></div>
+                                </div>
+                                <div class="form-group col-sm-12 col-md-3 col-lg-3">
                                     <label for="entryDate">Started</label>
                                     <input type="number" min="1950" max="2019" placeholder="2017" id="entryDate"
                                         name="entryDate" class="form-control" required>
                                 </div>
-                                <div class="form-group col-md-1 col-xl-1">
+                                <div class="form-group col-sm-12 col-md-3 col-lg-3">
                                     <label for="leaveDate">Ended</label>
                                     <input type="number" min="1950" max="2019" placeholder="2019" id="leaveDate"
                                         name="leaveDate" class="form-control" required>
                                 </div>
-                                <div class="form-group col-md-1 col-xl-10">
-                                    <label for="company" class="col-xl-12">Company</label>
-                                    <input type="text" id="company" name="company"
-                                        class="autocomplete form-control col-xl-12 company" autocomplete="off" required>
-                                    <div class="companySug" id="sug"></div>
-                                </div>
+
                             </div>
 
                             <div class="form-row">
-                                <div class="form-group col-md-6 col-xl-3">
+                                <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                                    <label for="jobTitle">Job Title</label>
+                                    <input type="text" placeholder="Sales representative" class="form-control col-xl-12"
+                                        id="jobTitle" name="jobTitle" required>
+                                </div>
+                                <div class="form-group col-sm-12 col-md-3 col-lg-3">
                                     <label for="city">City</label>
                                     <input type="text" class="form-control" id="city" name="city"
                                         placeholder="Monterrey" required>
                                 </div>
-                                <div class="form-group col-md-4 col-xl-3">
+                                <div class="form-group col-sm-12 col-md-3 col-lg-3">
                                     <label for="state">State</label>
                                     <input type="text" class="form-control" id="state" name="state"
                                         placeholder="Nuevo León" required>
                                 </div>
-                                <div class="form-group col-md-4 col-xl-6">
-                                    <label for="jobTitle" class="col-xl-12">Job Title</label>
-                                    <input type="text" placeholder="Sales representative" class="form-control col-xl-12"
-                                        id="jobTitle" name="jobTitle" required>
-                                </div>
+
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-md-6 col-xl-12">
-                                    <label class="col-xl-12" for="description">Job Description</label>
-                                    <textarea class="form-control col-xl-12" rows="3" id="description"
-                                        name="description" required></textarea>
+                                <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                                    <label for="description">Job Description</label>
+                                    <textarea class="form-control" rows="3" id="description" name="description"
+                                        required></textarea>
                                 </div>
                             </div>
 
                             <div class="form-row">
-                                <div class="form-group col-md-6 col-xl-12 tasks">
-                                    <label class="col-xl-12" for="tasks">Tasks Performed</label>
+                                <div class="form-group col-sm-12 col-md-12 col-lg-12 tasks">
+                                    <label for="tasks">Tasks Performed</label>
                                     {{!-- <input style="display:none" type="text" class="clone-task form-control col-xl-10"
                                         name="task" id="task"
                                         placeholder="Implemented marketing plan that increased sales by 30% and created loyalty among new and existing customers." required> --}}
-                                    <input type="text" class="form-control col-xl-10" name="task1" id="task1"
-                                        placeholder="Example: Implemented marketing plan that increased sales by 30%." required>
-                                    <input type="text" class="form-control col-xl-10" name="task2" id="task2" placeholder="Task number 2.">
-                                    <input type="text" class="form-control col-xl-10" name="task3" id="task3" placeholder="Task number 3.">
-                                    <input type="text" class="form-control col-xl-10" name="task4" id="task4" placeholder="Task number 4.">
-                                    <input type="text" class="form-control col-xl-10" name="task5" id="task5" placeholder="Task number 5.">
+                                    <input type="text" class="form-control col-xl-12 mt-2" name="task1" id="task1"
+                                        placeholder="Example: Implemented marketing plan that increased sales by 30%."
+                                        required>
+                                    <input type="text" class="form-control col-xl-12 mt-2" name="task2" id="task2"
+                                        placeholder="Task number 2.">
+                                    <input type="text" class="form-control col-xl-12 mt-2" name="task3" id="task3"
+                                        placeholder="Task number 3.">
+                                    <input type="text" class="form-control col-xl-12 mt-2" name="task4" id="task4"
+                                        placeholder="Task number 4.">
+                                    <input type="text" class="form-control col-xl-12 mt-2" name="task5" id="task5"
+                                        placeholder="Task number 5.">
                                     <!--<button type="submit" id="addTask" class="col-xl-1 btn btn-primary m-4">add</button>-->
                                 </div>
                             </div>
@@ -161,25 +168,40 @@
                     <hr>
                     {{#each data.Experiences}}
                     <div id="stats">
-                        <h6><strong>Job Title: </strong>{{jobTitle}}</h6>
-                        <h6><strong>Company: </strong>{{company}}</h6>
-                        <h6><strong>Entry Date: </strong>{{entryDate}}</h6>
-                        <h6><strong>Leave Date: </strong>{{leaveDate}}</h6>
-                        <h6><strong>City: </strong>{{city}}</h6>
-                        <h6><strong>State: </strong>{{state}}</h6>
-                        <h6><strong>Description: </strong>{{description}}</h6>
-                        <h6><strong>Tasks:</strong>
-                            <br>
-                            <ul>                                
-                                {{#if task1}}<li>{{task1}}</li>{{/if}}
-                                {{#if task2}}<li>{{task2}}</li>{{/if}}
-                                {{#if task3}}<li>{{task3}}</li>{{/if}}
-                                {{#if task4}}<li>{{task4}}</li>{{/if}}
-                                {{#if task5}}<li>{{task5}}</li>{{/if}}
-                            </ul>
-                        <form action="/deleteexp/{{id}}" method="POST">
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
+                        <div class="row p-4">
+                            <div class="col-xm-12 col-sm-12 col-md-6 col-lg-6">
+                                <h6><strong>Job Title: </strong>{{jobTitle}}</h6>
+                            </div>
+                            <div class="col-xm-12 col-sm-12 col-md-6 col-lg-6">
+                                <h6><strong>Company: </strong>{{company}}</h6>
+                            </div>
+                            <div class="col-xm-12 col-sm-12 col-md-6 col-lg-6">
+                                <h6><strong>Entry Date: </strong>{{entryDate}}</h6>
+                                <h6><strong>Leave Date: </strong>{{leaveDate}}</h6>
+                            </div>
+                            <div class="col-xm-12 col-sm-12 col-md-6 col-lg-6">
+                                <h6><strong>City: </strong>{{city}}</h6>
+                                <h6><strong>State: </strong>{{state}}</h6>
+                            </div>
+                            <div class="col-xm-12 col-sm-12 col-md-12 col-lg-12">
+                                <h6><strong>Description: </strong>{{description}}</h6>
+                            </div>
+                            <div class="col-xm-12 col-sm-12 col-md-12 col-lg-12">
+                                <h6><strong>Tasks:</strong>
+                                    <br>
+                                    <ul>
+                                        {{#if task1}}<li>{{task1}}</li>{{/if}}
+                                        {{#if task2}}<li>{{task2}}</li>{{/if}}
+                                        {{#if task3}}<li>{{task3}}</li>{{/if}}
+                                        {{#if task4}}<li>{{task4}}</li>{{/if}}
+                                        {{#if task5}}<li>{{task5}}</li>{{/if}}
+                                    </ul>
+                            </div>
+                            <form action="/deleteexp/{{id}}" method="POST">
+                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i>
+                                    Delete</button>
+                            </form>
+                        </div>
                     </div>
                     <hr>
                     {{/each}}
@@ -191,27 +213,28 @@
     <div class="row my-4">
         <div class="col-12 col-md-12 col-lg-12">
             <div class="card">
-                <div class="card-header">
-                    <h4>
-                        <strong>Skills</strong>
-                        <button class="btn btn-primary" type="button" data-toggle="collapse"
-                            data-target="#collapseFormSkills" aria-expanded="false" aria-controls="collapseFormSkills">
-                            Add New
+                <div class="card-header gradient-card-header blue-gradient">
+                    <h2>
+                        <i class="fas fa-code"></i><strong> Skills</strong>
+                        <button class="btn" type="button" data-toggle="collapse" data-target="#collapseFormSkills"
+                            aria-expanded="false" aria-controls="collapseFormSkills">
+                            <i class="fas fa-plus"></i>
                         </button>
-                    </h4>
+                    </h2>
                 </div>
                 <div class="collapse" id="collapseFormSkills">
                     <div class="card-body">
                         <form action="/skills" method="POST">
                             <div class="form-row">
-                                <div class="col-md-4 col-xl-6 form-group">
-                                    <label for="skillName" class="col-xl-12">Skills</label>
+                                <div class="col-sm-12 col-md-6 col-lg-6 form-group">
+                                    <label for="skillName">Skills</label>
                                     <input type="text" placeholder="Javascript" id="skillName" name="skillName"
                                         class="form-control col-xl-12" required>
                                 </div>
-                                <div class="col-md-4 col-xl-6 form-group">
-                                    <label for="skillLevel" class="col-xl-12">Mastery of Skill</label>
-                                    <select name="skillLevel" id="skillLevel" class="form-control" class="col-xl-12" required>
+                                <div class="ol-sm-12 col-md-6 col-lg-6 form-group">
+                                    <label for="skillLevel">Mastery of Skill</label>
+                                    <select name="skillLevel" id="skillLevel" class="form-control" class="col-xl-12"
+                                        required>
                                         <option value="Beginner">Beginner</option>
                                         <option value="Intermediate">Intermediate</option>
                                         <option value="Advanced">Advanced</option>
@@ -227,8 +250,15 @@
                     <hr>
                     {{#each data.Skills}}
                     <div id="stats">
-                        <h6><strong>Skill Name: </strong>{{skillName}}</h6>
-                        <h6><strong>Level: </strong>{{skillLevel}}</h6>
+                        <div class="row p-4">
+                            <div class="col-xm-12 col-sm-12 col-md-6 col-lg-6">
+                                <h6><strong>Skill Name: </strong>{{skillName}}</h6>
+                            </div>
+                            <div class="col-xm-12 col-sm-12 col-md-6 col-lg-6">
+                                <h6><strong>Level: </strong>{{skillLevel}}</h6>
+
+                            </div>
+                        </div>
                         <form action="/deleteskills/{{id}}" method="POST">
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
@@ -243,27 +273,26 @@
     <div class="row my-4">
         <div class="col-12 col-md-12 col-lg-12">
             <div class="card">
-                <div class="card-header">
-                    <h4>
-                        <strong>Languages</strong>
-                        <button class="btn btn-primary" type="button" data-toggle="collapse"
-                            data-target="#collapseFormLanguages" aria-expanded="false"
-                            aria-controls="collapseFormLanguages">
-                            Add New
+                <div class="card-header gradient-card-header blue-gradient">
+                    <h2>
+                        <i class="fas fa-language"></i><strong> Languages</strong>
+                        <button class="btn" type="button" data-toggle="collapse" data-target="#collapseFormLanguages"
+                            aria-expanded="false" aria-controls="collapseFormLanguages">
+                            <i class="fas fa-plus"></i>
                         </button>
-                    </h4>
+                    </h2>
                 </div>
                 <div class="collapse" id="collapseFormLanguages">
                     <div class="card-body">
                         <form action="/languages" method="POST">
                             <div class="form-row">
-                                <div class="col-md-4 col-xl-6 form-group">
-                                    <label for="language" class="col-xl-12">Skills</label>
+                                <div class="col-sm-12 col-md-6 col-lg-6 form-group">
+                                    <label for="language">Skills</label>
                                     <input type="text" placeholder="English" id="language" name="language"
                                         class="form-control col-xl-12" required>
                                 </div>
-                                <div class="col-md-4 col-xl-6 form-group">
-                                    <label for="languageLevel" class="col-xl-12">Mastery language</label>
+                                <div class="col-sm-12 col-md-6 col-lg-6 form-group">
+                                    <label for="languageLevel">Mastery language</label>
                                     <select name="languageLevel" id="languageLevel" class="form-control"
                                         class="col-xl-12" form-control>
                                         <option value="Beginner">Beginner</option>
@@ -281,10 +310,17 @@
                     <hr>
                     {{#each data.Languages}}
                     <div id="stats">
-                        <h6><strong>Language: </strong>{{language}}</h6>
-                        <h6><strong>Level: </strong>{{languageLevel}}</h6>
+                        <div class="row p-4">
+                            <div class="col-xm-12 col-sm-6 col-md-6 col-lg-6">
+                                <h6><strong>Language: </strong>{{language}}</h6>
+                            </div>
+                            <div class="col-xm-12 col-sm-6 col-md-6 col-lg-6">
+                                <h6><strong>Level: </strong>{{languageLevel}}</h6>
+                            </div>
+                        </div>
                         <form action="/deletelanguages/{{id}}" method="POST">
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i>
+                                Delete</button>
                         </form>
                     </div>
                     <hr>
@@ -298,59 +334,59 @@
     <div class="row my-4">
         <div class="col-12 col-md-12 col-lg-12">
             <div class="card">
-                <div class="card-header">
-                    <h4>
-                        <strong>Studies</strong>
-                        <button class="btn btn-primary" type="button" data-toggle="collapse"
-                            data-target="#collapseFormStudies" aria-expanded="false"
-                            aria-controls="collapseFormStudies">
-                            Add New
+                <div class="card-header gradient-card-header blue-gradient">
+                    <h2>
+                        <i class="fas fa-book"></i><strong> Studies</strong>
+                        <button class="btn" type="button" data-toggle="collapse" data-target="#collapseFormStudies"
+                            aria-expanded="false" aria-controls="collapseFormStudies">
+                            <i class="fas fa-plus"></i>
                         </button>
-                    </h4>
+                    </h2>
                 </div>
                 <div class="collapse" id="collapseFormStudies">
                     <div class="card-body">
                         <form action="/studies" method="POST">
 
                             <div class="form-row">
-                                <div class="form-group col-md-1 col-xl-1">
-                                    <label for="entryDateSchool">Started</label>
-                                    <input type="number" min="1950" max="2019" placeholder="2017" id="entryDateSchool"
-                                        name="entryDateSchool" class="form-control">
-                                </div>
-                                <div class="form-group col-md-1 col-xl-1">
-                                    <label for="leaveDateSchool">Ended</label>
-                                    <input type="number" min="1950" max="2019" placeholder="2019" id="leaveDateSchool"
-                                        name="leaveDateSchool" class="form-control">
-                                </div>
-                                <div class="form-group col-md-1 col-xl-10">
-                                    <label for="school" class="col-xl-12">School</label>
+                                <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                                    <label for="school">School</label>
                                     <input type="text" id="school" name="school"
                                         class="autocomplete form-control col-xl-12" autocomplete="off"
                                         placeholder="Tecnológico de Monterrey">
                                     <div class="school" id="sugSchool"></div>
                                 </div>
+                                <div class="form-group col-sm-12 col-md-3 col-lg-3">
+                                    <label for="entryDateSchool">Started</label>
+                                    <input type="number" min="1950" max="2019" placeholder="2017" id="entryDateSchool"
+                                        name="entryDateSchool" class="form-control">
+                                </div>
+                                <div class="form-group col-sm-12 col-md-3 col-lg-3">
+                                    <label for="leaveDateSchool">Ended</label>
+                                    <input type="number" min="1950" max="2019" placeholder="2019" id="leaveDateSchool"
+                                        name="leaveDateSchool" class="form-control">
+                                </div>
+
                             </div>
 
                             <div class="form-row">
-                                <div class="form-group col-md-6 col-xl-3">
+                                <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                                    <label for="degree">Program or Degree</label>
+                                    <input type="text" placeholder="Bachelor of Arts" class="form-control col-xl-12"
+                                        id="degree" name="degree">
+                                </div>
+                                <div class="form-group col-sm-12 col-md-3 col-lg-3">
                                     <label for="citySchool">City</label>
                                     <input type="text" class="form-control" id="citySchool" name="citySchool"
                                         placeholder="Monterrey">
                                 </div>
-                                <div class="form-group col-md-4 col-xl-3">
+                                <div class="form-group col-sm-12 col-md-3 col-lg-3">
                                     <label for="stateSchool">State</label>
                                     <input type="text" class="form-control" id="stateSchool" name="stateSchool"
                                         placeholder="Nuevo León">
                                 </div>
-                                <div class="form-group col-md-4 col-xl-6">
-                                    <label for="degree" class="col-xl-12">Program or Degree</label>
-                                    <input type="text" placeholder="Bachelor of Arts" class="form-control col-xl-12"
-                                        id="degree" name="degree">
-                                </div>
                             </div>
 
-                            <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                            <button id="submit" type="submit" class="btn btn-primary ">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -358,15 +394,22 @@
                     <hr>
                     {{#each data.Studies}}
                     <div id="stats">
-                        <h6><strong>Degree: </strong>{{degree}}</h6>
-                        <h6><strong>School: </strong>{{school}}</h6>
-                        <h6><strong>City: </strong>{{citySchool}}</h6>
-                        <h6><strong>State: </strong>{{stateSchool}}</h6>
-                        <h6><strong>Entry Date: </strong>{{entryDateSchool}}</h6>
-                        <h6><strong>Finish Date: </strong>{{leaveDateSchool}}</h6>
-                        <form action="/deletestudies/{{id}}" method="POST">
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
+                        <div class="row p-4">
+                            <div class="col-xm-12 col-sm-12 col-md-6 col-lg-6">
+                                <h6><strong>Degree: </strong>{{degree}}</h6>
+                                <h6><strong>City: </strong>{{citySchool}}</h6>
+                                <h6><strong>Entry Date: </strong>{{entryDateSchool}}</h6>
+                            </div>
+                            <div class="col-xm-12 col-sm-12 col-md-6 col-lg-6">
+                                <h6><strong>School: </strong>{{school}}</h6>
+                                <h6><strong>State: </strong>{{stateSchool}}</h6>
+                                <h6><strong>Finish Date: </strong>{{leaveDateSchool}}</h6>
+                            </div>
+                            <form action="/deletestudies/{{id}}" method="POST">
+                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i>
+                                    Delete</button>
+                            </form>
+                        </div>
                     </div>
                     <hr>
                     {{/each}}

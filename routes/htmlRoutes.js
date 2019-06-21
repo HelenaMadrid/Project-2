@@ -51,7 +51,11 @@ module.exports = function (app) {
       where: {
         id: req.session.passport.user
       },
-      include: [{ all: true }]
+      include: [{ all: true }],
+      order: [
+        [ db.Experience, 'entryDate', 'DESC' ],
+        [ db.Studies, 'entryDateSchool', 'DESC' ],
+      ]
     }).then(function (results) {
       // console.log(results[0].dataValues);
       // eslint-disable-next-line camelcase

@@ -2,6 +2,40 @@
   line-height: 2.5;
 }
 
+#profile-pic{
+  object-fit: cover; 
+  width:200px; 
+  height:200px; 
+  border-radius: 50%; 
+  border-width: 3px; 
+  border-style: solid; 
+  border-color: #397bc7;
+}
+
+.card-header  h2{
+  color:white;  
+  vertical-align: middle !important;
+  text-shadow: horizontal-offset vertical-offset blur color;
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+}
+
+.card-header  h2 strong, .card-header  h2 i{ 
+  vertical-align: middle !important;
+}
+
+.card-header  button{
+  float: right;
+  background-color:#33D3D4;
+}
+
+.card-header button{
+  width: 50px !important;
+  border-radius: 1000px;
+  height: 50px !important;
+  padding:0;
+  margin:0;
+}
+
 #errors {
   font-size: 12px;
   border: 1px solid red;
