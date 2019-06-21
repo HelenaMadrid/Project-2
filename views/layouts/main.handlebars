@@ -28,6 +28,7 @@
   <footer>
     {{>footer}}
   </footer>
+
   <!-- JQuery -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <!-- Bootstrap tooltips -->
@@ -36,13 +37,14 @@
   <!-- Bootstrap core JavaScript -->
   <script type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <!--Pdfmaker-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.57/pdfmake.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.57/vfs_fonts.js"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.2/js/mdb.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
-  {{!-- <script src="../../public/js/bootstrap.min.js"></script> --}}
-  <script src="../../public/js/jquery.mockjax.js"></script>
-  <script src="../../public/js/bootstrap-typeahead.js"></script>
+  <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>-->
 
   <script>
 
@@ -55,86 +57,107 @@
 
 
 
-      var image = $("#profile-pic");
-      if (image[0].height > 19) {
-        console.log("si hay foto");
-        image.show();
-      }
-      else {
-        console.log("no hay foto");
-        image.hide();
-      }
+      // var image = $("#profile-pic");
+      // if (image[0].height > 19) {
+      //  console.log("si hay foto");
+      //  image.show();
+      //}
+      //else {
+      // console.log("no hay foto");
+      //image.hide();
+      //}
 
-      $("#company_1").typeahead({
-        local: [
-          { id: 1, name: 'Toronto' },
-          { id: 2, name: 'Montreal' },
-          { id: 3, name: 'New York' },
-          { id: 4, name: 'Buffalo' },
-          { id: 5, name: 'Boston' },
-          { id: 6, name: 'Columbus' },
-          { id: 7, name: 'Dallas' },
-          { id: 8, name: 'Vancouver' },
-          { id: 9, name: 'Seattle' },
-          { id: 10, name: 'Los Angeles' }
-        ]
-      });
-
-
-
-
-      $("#addTask").off();
-      $("#addTask").on("click", function (event) {
-        event.preventDefault();
-        var lastId = $('div[id^="task"]:last');
-        var num = parseInt(lastId.prop("id").match(/\d+/g), 10) + 1;
-        var taskClone = $(".clone-task").clone(true).prop('id', 'task' + num);
-        taskClone.insertBefore("#addTask");
-        taskClone.show();
-        taskClone.attr("name", "task" + num);
-        taskClone.removeClass("clone-task");
-
-      });
 
       $("#printPDF").off();
       $("#printPDF").on("click", function (event) {
         event.preventDefault();
-        console.log("hola");
-        var currentLocation = location.href;
-        console.log(currentLocation);
-        var printya = $("#printYa").html();
-        $.ajax({
-          type: "POST",
-          url: "https://v2018.api2pdf.com/chrome/url",
-          headers: {
-            "accept": "application/json",
-            "Authorization": "591b4741-015b-40c1-a51c-21e77ce15bbb",
-            "Content-Type": "application/json"
-          },
-          async: false,
-          dataType: "json",
-          data: JSON.stringify({
-            "html": printya,
-            "inlinePdf": true,
-            "fileName": "test.pdf",
-            "options": {
-              "landscape": "true",
-              "printBackground": false
-            }
-          }),
+        //var source = document.getElementById("entry-template").innerHTML;
+        //var template = Handlebars.compile(source);
+        //var dates = $("#dates").text();
+        $.get("/print/all", function (data) {
+          var experience = data[0].Experiences;
+          var languages = data[0].Languages;
+          var skills = data[0].Skills;
+          var studies = data[0].Studies;
+          var generalInfo = data[0].GeneralInfos;
+          console.log(data);
+          console.log(data[0].username);
+          console.log(experience);
+          console.log(experience.length);
+          console.log(languages.length);
+          console.log(skills.length);
+          console.log(studies.length);
+          var experiencesPrint;
+          var expArr = [];
+          for (var x = 0; x < experience.length; x++) {
+            experiencesPrint = [
+              {
+                columns: [
+                  {
+                    width: 140, alignment: 'center',
+                    text: experience[x].entryDate + "-" + experience[x].leaveDate,
+                  },
+                  {
+                    width: '*',
+                    text: experience[x].company, bold: true,
+                  }
+                ]
+              },
+              {
+                columns: [
+                  {
+                    width: 140, alignment: 'center',
+                    text: experience[x].city + ", " + experience[x].state,
+                  },
+                  {
+                    width: '*',
+                    text: experience[x].jobTitle, italics: true,
+                  }
+                ]
+              },
+              {
+                columns: [
+                  {
+                    width: 140,
+                    text: "",
+                  },
+                  {
+                    width: '*',
+                    text: experience[x].description,
+                  }
+                ]
+              },
+              {
+                columns: [
+                {
+                  width: 160,
+                  text: "",
+                },
+                {
+                  width:"*",
+                  ul: [
+                  experience[x].task1,
+                  experience[x].task2
+                ]
+                }]
+              }
 
-          success: function (response) {
-            console.log(response);
+            ]
 
-          },
-          error: function (xhr, status, err) {
-            // This time, we do not end up here!
-            console.log(err);
 
+            expArr.push(experiencesPrint);
           }
-        });
-      });
 
+          var docDefinition = {
+            content: [
+              expArr
+            ]
+          }
+          pdfMake.createPdf(docDefinition).open();
+        });
+
+
+      });
     });
 
 

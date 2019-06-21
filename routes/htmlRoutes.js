@@ -63,6 +63,23 @@ module.exports = function (app) {
     });
   });
 
+  app.get("/print/all", authenticationMiddleware(), function (req, res) {
+    db.User.findAll({
+      where: {
+        id: req.session.passport.user
+      },
+      include: [{ all: true }]
+    }).then(function (results) {
+      // console.log(results[0].dataValues);
+      // eslint-disable-next-line camelcase
+      return res.json(results);
+    });
+  });
+
+ 
+
+
+
   app.post("/general", authenticationMiddleware(), function (req, res) {
     db.GeneralInfo.create({ ...req.body, UserId: req.session.passport.user }).then(function () {
       res.redirect("/profile");
@@ -115,6 +132,7 @@ module.exports = function (app) {
       res.redirect("/profile");
     });
   });
+
 
 
   app.post("/deletestudies/:id", function (req, res) {
