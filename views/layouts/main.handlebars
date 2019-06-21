@@ -86,30 +86,69 @@
           var experiencesPrint;
           var expArr = [];
           for (var x = 0; x < experience.length; x++) {
-            experiencesPrint =
-
+            experiencesPrint = [
               {
                 columns: [
                   {
                     width: 140, alignment: 'center',
-                    text: experience[x].city +", "+ experience[x].state,
+                    text: experience[x].entryDate + "-" + experience[x].leaveDate,
                   },
                   {
                     width: '*',
-                    text: experience[x].jobTitle,
+                    text: experience[x].company, bold: true,
                   }
                 ]
+              },
+              {
+                columns: [
+                  {
+                    width: 140, alignment: 'center',
+                    text: experience[x].city + ", " + experience[x].state,
+                  },
+                  {
+                    width: '*',
+                    text: experience[x].jobTitle, italics: true,
+                  }
+                ]
+              },
+              {
+                columns: [
+                  {
+                    width: 140,
+                    text: "",
+                  },
+                  {
+                    width: '*',
+                    text: experience[x].description,
+                  }
+                ]
+              },
+              {
+                columns: [
+                {
+                  width: 160,
+                  text: "",
+                },
+                {
+                  width:"*",
+                  ul: [
+                  experience[x].task1,
+                  experience[x].task2
+                ]
+                }]
               }
+
+            ]
+
+
             expArr.push(experiencesPrint);
           }
 
-            var docDefinition = {
-              content: [
-                expArr
-              ]
-            }
-          
-
+          var docDefinition = {
+            content: [
+              expArr
+            ]
+          }
           pdfMake.createPdf(docDefinition).open();
         });
 
