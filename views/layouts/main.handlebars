@@ -49,23 +49,15 @@
   <script>
 
     $(document).ready(function () {
-      $('.datepicker').datepicker({
-        format: "yyyy",
-        viewMode: "years",
-        minViewMode: "years"
-      });
 
-
-
-      // var image = $("#profile-pic");
-      // if (image[0].height > 19) {
-      //  console.log("si hay foto");
-      //  image.show();
-      //}
-      //else {
-      // console.log("no hay foto");
-      //image.hide();
-      //}
+      console.log("puto");
+      var image = $("#profile-pic");
+      if(image.attr("src") == "null"){
+        console.log("es null");
+        image.hide();
+      }else{
+        image.show();
+      }
 
 
       $("#printPDF").off();
@@ -129,17 +121,17 @@
               },
               {
                 columns: [
-                {
-                  width: 160,
-                  text: "",
-                },
-                {
-                  width:"*",
-                  ul: [
-                  experience[x].task1,
-                  experience[x].task2
-                ]
-                }]
+                  {
+                    width: 160,
+                    text: "",
+                  },
+                  {
+                    width: "*",
+                    ul: [
+                      experience[x].task1,
+                      experience[x].task2
+                    ]
+                  }]
               }
 
             ]
