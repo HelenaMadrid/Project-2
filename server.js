@@ -23,11 +23,11 @@ app.use(expressValidator());
 app.use(express.static("public"));
 
 var options = {
-  host: "localhost",
+  host: "q3vtafztappqbpzn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
   port: 3306,
-  user: "root",
-  password: "root",
-  database: "exampledb"
+  user: "oqor573w2eke3hhm",
+  password: "q1iz588iwbwvxelj",
+  database: "iky3cgjfv8v77r4b"
 };
 
 var sessionStore = new MySQLStore(options);
