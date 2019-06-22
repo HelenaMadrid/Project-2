@@ -56,9 +56,9 @@
       // });
 
       var image = $("#profile-pic");
-      if(image.attr("src") == "null"){
+      if (image.attr("src") == "null") {
         image.hide();
-      }else{
+      } else {
         image.show();
       }
 
@@ -177,8 +177,16 @@
 
             studiesArr.push(studiesPrint);
           }
+
           var docDefinition = {
             content: [
+              {
+                stack: [
+                  generalInfo[0].name + generalInfo[0].description,
+                  { text: 'helena.madrid@directrips.com    +(52)8115389268 \n José Alvarado 1000 dep.21 col. Jardín español, Monterrey, México ', style: 'subheader' },
+                ],
+                style: 'header'
+              },
               {
                 text: 'Experience\n\n', bold: true, fontSize: 14,
 
@@ -189,10 +197,21 @@
 
               },
               studiesArr
-            ]
-          }
+            ],
+            margin: [0, 0, 0, 0],
+            styles: {
+              header: {
+                fontSize: 14,
+                bold: false,
+                alignment: 'center',
+                margin: [0, 0, 0, 00]
+              },
+              defaultStyle: {
+                columnGap: 20
+              }
+            }
           pdfMake.createPdf(docDefinition).open();
-        });
+          });
 
 
       });
