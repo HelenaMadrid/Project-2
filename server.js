@@ -23,11 +23,11 @@ app.use(expressValidator());
 app.use(express.static("public"));
 
 var options = {
-  host: "localhost",
+  host: "o61qijqeuqnj9chh.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
   port: 3306,
-  user: "root",
-  password: "root",
-  database: "exampledb"
+  user: "bstv9oe7f1airs9q",
+  password: "qy939jbz3zwynxmk",
+  database: "pxbuqlnx6u13svxo"
 };
 
 var sessionStore = new MySQLStore(options);
@@ -37,7 +37,7 @@ app.use(
     // Random string generated secret
     secret: "cuzA0rq9AOOupiga",
     // Determines wheter or not the session is updated, even without changes being made
-    resave: false,
+    resave: true,
     store: sessionStore,
     // Creates a cookie whenever a user visits the page, ergo false. Only by login
     saveUninitialized: false

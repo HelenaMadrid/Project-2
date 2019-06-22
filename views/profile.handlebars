@@ -1,7 +1,8 @@
 <div class="container">
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
         <div class="text-center">
-            <img id="profile-pic" src="{{data.GeneralInfos.0.profilePic}}" onError="this.onerror=null;this.src='null';" alt="...">
+            <img id="profile-pic" src="{{data.GeneralInfos.0.profilePic}}" onError="this.onerror=null;this.src='null';"
+                alt="...">
         </div>
         <h1 class="display-4 uppercase">{{data.username}}</h1>
         <p class="lead">My details.</p>
@@ -260,7 +261,8 @@
                             </div>
                         </div>
                         <form action="/deleteskills/{{id}}" method="POST">
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i>
+                                Delete</button>
                         </form>
                     </div>
                     <hr>
@@ -287,7 +289,7 @@
                         <form action="/languages" method="POST">
                             <div class="form-row">
                                 <div class="col-sm-12 col-md-6 col-lg-6 form-group">
-                                    <label for="language">Skills</label>
+                                    <label for="language">Language</label>
                                     <input type="text" placeholder="English" id="language" name="language"
                                         class="form-control col-xl-12" required>
                                 </div>
@@ -416,7 +418,14 @@
                 </div>
             </div>
         </div>
+        
+
     </div>
+    <div class="row">
+            <div class="form-group col-sm-12 col-md-12 col-lg-12 my-3">
+                <a type="submit" id="printPDF" class="btn btn-primary waves-effect waves-light btn-block aqua-gradient btn-lg">Print PDF</a>
+            </div>
+        </div>
 
 </div>
 <script>
