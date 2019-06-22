@@ -75,29 +75,21 @@
           var skills = data[0].Skills;
           var studies = data[0].Studies;
           var generalInfo = data[0].GeneralInfos;
-          console.log(data);
-          console.log(data[0].username);
-          console.log(experience);
-          console.log(experience.length);
-          console.log(languages.length);
-          console.log(skills.length);
-          console.log(studies.length);
-          var experiencesPrint;
           var experienceArr = [];
           var studiesArr = [];
           var skillsArr = [];
           var languagesArr = [];
           for (var x = 0; x < experience.length; x++) {
-            experiencesPrint = [
+            var experiencesPrint = [
               {
                 columns: [
                   {
                     width: 140, alignment: 'center',
-                    text: experience[x].entryDate + "-" + experience[x].leaveDate,
+                    text: "\n" + experience[x].entryDate + "-" + experience[x].leaveDate,
                   },
                   {
                     width: '*',
-                    text: experience[x].company, bold: true,
+                    text: "\n" + experience[x].company, bold: true,
                   }
                 ]
               },
@@ -135,7 +127,10 @@
                     width: "*",
                     ul: [
                       experience[x].task1,
-                      experience[x].task2
+                      experience[x].task2,
+                      experience[x].task3,
+                      experience[x].task4,
+                      experience[x].task5
                     ]
                   }]
               }
@@ -147,16 +142,16 @@
           }
 
           for (var x = 0; x < studies.length; x++) {
-            studiesPrint = [
+            var studiesPrint = [
               {
                 columns: [
                   {
                     width: 140, alignment: 'center',
-                    text: studies[x].entryDateSchool + "-" + studies[x].leaveDateSchool,
+                    text: "\n" + studies[x].entryDateSchool + "-" + studies[x].leaveDateSchool,
                   },
                   {
                     width: '*',
-                    text: studies[x].school, bold: true,
+                    text: "\n" + studies[x].school, bold: true,
                   }
                 ]
               },
@@ -178,40 +173,85 @@
             studiesArr.push(studiesPrint);
           }
 
+          for (var x = 0; x < skills.length; x++) {
+            var skillsPrint = [
+              {
+                width: "*", alignment: 'left', bold: false, fontSize: 14,
+                text: skills[x].skillName + ": " + skills[x].skillLevel,
+              }
+            ]
+
+            skillsArr.push(skillsPrint);
+          }
+
+          for (var x = 0; x < languages.length; x++) {
+            var languagesPrint = [
+              {
+                width: "*", alignment: 'left', bold: false, fontSize: 14,
+                text: languages[x].language + ": " + languages[x].languageLevel,
+              }
+            ]
+            languagesArr.push(languagesPrint);
+          }
+
           var docDefinition = {
             content: [
               {
                 stack: [
-                  generalInfo[0].name + generalInfo[0].description,
-                  { text: 'helena.madrid@directrips.com    +(52)8115389268 \n José Alvarado 1000 dep.21 col. Jardín español, Monterrey, México ', style: 'subheader' },
+                  generalInfo[0].name + " " + generalInfo[0].description,
+                  { text: data[0].email + "    " + generalInfo[0].phone + "\n" + generalInfo[0].address, style: 'subheader' },
                 ],
                 style: 'header'
               },
               {
-                text: 'Experience\n\n', bold: true, fontSize: 14,
+                text: '\n\nExperience\n', bold: true, fontSize: 14,
 
               },
               experienceArr,
               {
-                text: 'Education\n\n', bold: true, fontSize: 14,
+                text: '\nEducation\n', bold: true, fontSize: 14,
 
               },
-              studiesArr
+              studiesArr,
+              {
+                columns: [
+                  {
+                    width: "*", alignment: 'left', bold: true, fontSize: 14,
+                    text: "\n\nSkills\n\n",
+                  },
+                  {
+                    width: '*', alignment: 'left', bold: true, fontSize: 14,
+                    text: "\n\nLanguages\n\n",
+                  }
+                ]
+              },
+              {
+                columns: [
+                  skillsArr,
+                  languagesPrint
+                ]
+              }
             ],
             margin: [0, 0, 0, 0],
             styles: {
               header: {
                 fontSize: 14,
-                bold: false,
+                bold: true,
                 alignment: 'center',
                 margin: [0, 0, 0, 00]
               },
-              defaultStyle: {
-                columnGap: 20
+              subheader: {
+                fontSize: 12,
+                bold: false,
               }
+            },
+            defaultStyle: {
+              columnGap: 20
             }
+          }
           pdfMake.createPdf(docDefinition).open();
-          });
+          pdfMake.createPdf(docDefinition).download();
+        });
 
 
       });
