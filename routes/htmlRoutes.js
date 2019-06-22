@@ -24,7 +24,11 @@ module.exports = function (app) {
       where: {
         id: req.session.passport.user
       },
-      include: [{ all: true }]
+      include: [{ all: true }],
+      order: [
+        [db.Experience, 'entryDate', 'DESC'],
+        [db.Studies, 'entryDateSchool', 'DESC'],
+      ]
     }).then(function (results) {
       // console.log(results[0].dataValues);
       // eslint-disable-next-line camelcase
@@ -33,7 +37,7 @@ module.exports = function (app) {
   });
 
   app.get("/profesionalexperience", authenticationMiddleware(), function (req, res) {
-      res.render("profesionalexperience");
+    res.render("profesionalexperience");
   });
 
 
@@ -53,8 +57,8 @@ module.exports = function (app) {
       },
       include: [{ all: true }],
       order: [
-        [ db.Experience, 'entryDate', 'DESC' ],
-        [ db.Studies, 'entryDateSchool', 'DESC' ],
+        [db.Experience, 'entryDate', 'DESC'],
+        [db.Studies, 'entryDateSchool', 'DESC'],
       ]
     }).then(function (results) {
       // console.log(results[0].dataValues);
@@ -68,7 +72,11 @@ module.exports = function (app) {
       where: {
         id: req.session.passport.user
       },
-      include: [{ all: true }]
+      include: [{ all: true }],
+      order: [
+        [db.Experience, 'entryDate', 'DESC'],
+        [db.Studies, 'entryDateSchool', 'DESC'],
+      ]
     }).then(function (results) {
       // console.log(results[0].dataValues);
       // eslint-disable-next-line camelcase
@@ -76,7 +84,7 @@ module.exports = function (app) {
     });
   });
 
- 
+
 
 
 

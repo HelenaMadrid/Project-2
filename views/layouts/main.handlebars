@@ -195,6 +195,7 @@
           }
 
           var docDefinition = {
+            pageSize: "A4",
             content: [
               {
                 stack: [
@@ -381,10 +382,11 @@
           }
 
           var docDefinition = {
+            pageSize: "A4",
             content: [
               {
                 text: generalInfo[0].name + " " + generalInfo[0].description,
-                alignment: 'center', fontSize: 20, bold: true
+                alignment: 'center', fontSize: 20, bold: true, margin: [0, -20, 0, 0]
               },
               {
                 text: data[0].email,
@@ -411,7 +413,7 @@
               { text: 'Education\n', bold: true, fontSize: 14 },
               studiesArr,
               {
-                text: '–––––––––––––––––––––––––––––––––––––––––––2',
+                text: '–––––––––––––––––––––––––––––––––––––––––––',
                 fontSize: 18
               },
               {

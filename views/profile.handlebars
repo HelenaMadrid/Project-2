@@ -24,12 +24,12 @@
                         <form action="/general" method="POST">
                             <div class="form-row">
                                 <div class="form-group col-sm-12 col-md-8 col-lg-8">
-                                    <label for="name">Name</label>
+                                    <label for="name">First Name</label>
                                     <input type="text" class="form-control" name="name" id="name" placeholder="Name"
                                         required>
                                 </div>
                                 <div class="form-group col-sm-12 col-md-4 col-lg-4">
-                                    <label for="description">Description</label>
+                                    <label for="description">Last Name</label>
                                     <input type="text" class="form-control" name="description" id="description"
                                         placeholder="Description" required>
                                 </div>
@@ -61,8 +61,8 @@
                     <hr>
                     {{#each data.GeneralInfos}}
                     <div id="stats">
-                        <h6><strong>Name: </strong>{{name}}</span></h6>
-                        <h6><strong>Description: </strong>{{description}}</span></h6>
+                        <h6><strong>First Name: </strong>{{name}}</span></h6>
+                        <h6><strong>Last Name: </strong>{{description}}</span></h6>
                         <h6><strong>Address: </strong>{{address}}</span></h6>
                         <h6><strong>Phone: </strong>{{phone}}</span></h6>
                         <form action="/deletegeneral/{{id}}" method="POST">
