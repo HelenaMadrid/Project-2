@@ -63,8 +63,8 @@
       }
 
 
-      $("#printPDF").off();
-      $("#printPDF").on("click", function (event) {
+      $("#printPDF1").off();
+      $("#printPDF1").on("click", function (event) {
         event.preventDefault();
         //var source = document.getElementById("entry-template").innerHTML;
         //var template = Handlebars.compile(source);
@@ -252,12 +252,195 @@
           pdfMake.createPdf(docDefinition).open();
           pdfMake.createPdf(docDefinition).download();
         });
-
-
       });
+
+      $("#printPDF2").off();
+      $("#printPDF2").on("click", function (event) {
+        event.preventDefault();
+        //var source = document.getElementById("entry-template").innerHTML;
+        //var template = Handlebars.compile(source);
+        //var dates = $("#dates").text();
+        $.get("/print/all", function (data) {
+          var experience = data[0].Experiences;
+          var languages = data[0].Languages;
+          var skills = data[0].Skills;
+          var studies = data[0].Studies;
+          var generalInfo = data[0].GeneralInfos;
+          var experienceArr = [];
+          var studiesArr = [];
+          var skillsArr = [];
+          var languagesArr = [];
+          for (var x = 0; x < experience.length; x++) {
+            var experiencesPrint = [
+              {
+                style: 'tableExample',
+                table: {
+                  widths: [50, 50, 140, 120, 100],
+                  body: [
+                    [
+                      { text: 'Start', bold: true },
+                      { text: 'End', bold: true },
+                      { text: 'Position', bold: true },
+                      { text: 'Company Name', bold: true },
+                      { text: 'Location', bold: true },
+                    ],
+                    [
+                      { text: experience[x].entryDate, fontSize: 10 },
+                      { text: experience[x].leaveDate, fontSize: 10 },
+                      { text: experience[x].jobTitle, fontSize: 10 },
+                      { text: experience[x].company, fontSize: 10 },
+                      { text: experience[x].city + ", " + experience[x].state, fontSize: 10 }
+                    ]
+                  ]
+                }
+              },
+              {
+                style: 'tableExample',
+                table: {
+                  widths: [145, 345],
+                  body: [
+                    [
+                      { text: 'Description', bold: true },
+                      { text: 'Tasks', bold: true },
+                    ],
+                    [
+                      {
+                        text: experience[x].description,
+                        fontSize: 10
+                      },
+                      {
+                        ul: [
+                          { text: experience[x].task1, fontSize: 10 },
+                          { text: experience[x].task2, fontSize: 10 },
+                          { text: experience[x].task3, fontSize: 10 },
+                          { text: experience[x].task4, fontSize: 10 },
+                          { text: experience[x].task5, fontSize: 10 },
+                        ]
+                      },
+                    ]
+                  ]
+                }
+              }
+
+            ]
+            experienceArr.push(experiencesPrint);
+          }
+
+          for (var x = 0; x < studies.length; x++) {
+            var studiesPrint = [
+              {
+                style: 'tableExample',
+                table: {
+                  widths: [50, 50, 140, 120, 100],
+                  body: [
+                    [
+                      { text: 'Start', bold: true },
+                      { text: 'End', bold: true },
+                      { text: 'Degree', bold: true },
+                      { text: 'Institution Name', bold: true },
+                      { text: 'Location', bold: true },
+                    ],
+                    [
+                      { text: studies[x].entryDateSchool, fontSize: 10 },
+                      { text: studies[x].leaveDateSchool, fontSize: 10 },
+                      { text: studies[x].degree, fontSize: 10 },
+                      { text: studies[x].school, fontSize: 10 },
+                      { text: studies[x].citySchool + ", " + studies[x].stateSchool, fontSize: 10 },]
+                  ]
+                }
+              }
+            ]
+
+
+            studiesArr.push(studiesPrint);
+          }
+
+          for (var x = 0; x < skills.length; x++) {
+            var skillsPrint = [
+              {
+                columns: [
+                  { text: skills[x].skillName, fontSize: 10 },
+                  { text: skills[x].skillLevel, fontSize: 10 },
+                ]
+              }
+            ]
+
+            skillsArr.push(skillsPrint);
+          }
+
+          for (var x = 0; x < languages.length; x++) {
+            var languagesPrint = [
+              {
+                columns: [
+                  { text: languages[0].language, fontSize: 10 },
+                  { text: languages[0].languageLevel, fontSize: 10 },
+                ]
+              }
+            ]
+            languagesArr.push(languagesPrint);
+          }
+
+          var docDefinition = {
+            content: [
+              {
+                text: generalInfo[0].name + " " + generalInfo[0].description,
+                alignment: 'center', fontSize: 20, bold: true
+              },
+              {
+                text: data[0].email,
+                alignment: 'center', fontSize: 12
+              },
+              {
+                text: generalInfo[0].address,
+                alignment: 'center', fontSize: 12
+              },
+              {
+                text: generalInfo[0].phone,
+                alignment: 'center', fontSize: 12
+              },
+              {
+                text: '–––––––––––––––––––––––––––––––––––––––––––',
+                fontSize: 18
+              },
+              { text: 'Professional Experience\n', bold: true, fontSize: 14 },
+              experienceArr,
+              {
+                text: '–––––––––––––––––––––––––––––––––––––––––––',
+                fontSize: 18
+              },
+              { text: 'Education\n', bold: true, fontSize: 14 },
+              studiesArr,
+              {
+                text: '–––––––––––––––––––––––––––––––––––––––––––',
+                fontSize: 18
+              },
+              {
+                columns: [
+                  { text: 'Skills\n', bold: true, fontSize: 14 },
+                  { text: 'Languages\n', bold: true, fontSize: 14 },
+                ]
+              },
+              {
+                columns: [
+                  skillsArr,
+                  languagesArr
+                ]
+              }
+
+            ],
+            styles: {
+              tableExample: {
+                margin: [0, 5, 0, 15]
+              },
+            }
+          }
+
+          pdfMake.createPdf(docDefinition).open();
+          pdfMake.createPdf(docDefinition).download();
+        });
+      });
+
     });
-
-
 
   </script>
 </body>
