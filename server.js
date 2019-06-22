@@ -25,9 +25,9 @@ app.use(express.static("public"));
 var options = {
   host: "q3vtafztappqbpzn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
   port: 3306,
-  user: "oqor573w2eke3hhm",
-  password: "q1iz588iwbwvxelj",
-  database: "iky3cgjfv8v77r4b"
+  user: "ryfazwxmek92qq7m",
+  password: "ljp204g839mlgpso",
+  database: "u0jznfyuhbmqw6m0"
 };
 
 var sessionStore = new MySQLStore(options);
