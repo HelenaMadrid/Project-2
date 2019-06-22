@@ -12,7 +12,7 @@
   border-color: #397bc7;
 }
 
-.card-header  h2{
+.card-header  h2, #printPDF{
   color:white;  
   vertical-align: middle !important;
   text-shadow: horizontal-offset vertical-offset blur color;
