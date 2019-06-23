@@ -29,7 +29,7 @@ There are two ways to test this:
 ## Authors
 
 * **Helena Madrid** - [HelenaMadrid](https://github.com/HelenaMadrid)
-* **Sergio Rodriguez** - [sergioardz79](https://github.com/sergioardz79)
+* **Sergio Rodriguez** - [sergioardz](https://github.com/sergioardz)
 * **Ernesto Salvador** - [darkyer](https://github.com/darkyer)
 
 See also the list of [contributors](https://github.com/HelenaMadrid/Project-2/contributors) who participated in this project.
